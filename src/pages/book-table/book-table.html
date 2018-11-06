@@ -1,0 +1,33 @@
+<ion-header>
+    <app-header></app-header>
+</ion-header>
+
+<ion-content padding>
+    <br><br>
+    <div class="property-text-center pad-top-sm pad-right-sm pad-left-sm" flex>
+        <h3>{{'bookTable.title' | translate}}</h3>
+    </div>
+    <ion-card class="push-lg">
+        <ion-segment [(ngModel)]="tab">
+            <ion-segment-button value="book">
+                {{'bookTable.bookingTab' | translate}}
+            </ion-segment-button>
+            <ion-segment-button value="invite">
+                {{'bookTable.reservationTab' | translate}}
+            </ion-segment-button>
+        </ion-segment>
+        <div [ngSwitch]="tab">
+            <ion-list *ngSwitchCase="'book'">
+                <ion-item>
+                    <h2>book</h2>
+                </ion-item>
+            </ion-list>
+
+            <ion-list *ngSwitchCase="'invite'">
+                <ion-item>
+                    <h2>invite</h2>
+                </ion-item>
+            </ion-list>
+        </div>
+    </ion-card>
+</ion-content>

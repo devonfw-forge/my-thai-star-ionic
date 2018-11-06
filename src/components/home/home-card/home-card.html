@@ -1,0 +1,12 @@
+<ion-card>
+  <img ion-card-image src="{{tile.img}}">
+  <ion-card-content>
+    <div class="tile-content">
+      <h3>{{tile.titleKey | translate}}</h3>
+      <p> {{tile.contentKey | translate}} </p>
+    </div>
+  </ion-card-content>
+  <button ion-button color="accent" (click)="onButtonClick($event)">
+    {{tile.buttonLabelKey | translate}}
+  </button>
+</ion-card>
