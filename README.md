@@ -2,7 +2,7 @@
 
 This is an ionic implementation of the [My Thai Star](https://github.com/oasp/my-thai-star) restaurant management application (client-side).
 
-This project was generated with [ionic-cli](https://ionicframework.com/docs/cli/
+This project was generated with [ionic-cli](https://ionicframework.com/docs/cli/)
 
 ## Install or update the project
 
