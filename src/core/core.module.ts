@@ -9,8 +9,6 @@ import { MomentModule } from 'ngx-moment';
 
 import { IonicModule } from 'ionic-angular';
 
-import { NotFoundComponent } from './../components/not-found/not-found';
-
 // Moment locales
 import 'moment/locale/es';
 import 'moment/locale/fr';
@@ -25,6 +23,17 @@ import { AuthGuardProvider } from '../providers/auth-guard/auth-guard';
 import { ToastProvider } from '../providers/toast/toast';
 import { WindowProvider } from '../providers/window/window';
 import { HttpRequestInterceptorProvider } from '../providers/http-request-interceptor/http-request-interceptor';
+import { TooltipsModule } from 'ionic-tooltips';
+import {
+  CovalentExpansionPanelModule,
+  CovalentDataTableModule,
+  CovalentPagingModule,
+} from '@covalent/core';
+import {
+  MatProgressBarModule,
+  MatIconModule,
+  MatSelectModule,
+} from '@angular/material';
 
 // Default text strings for OwlDateTime
 export class DefaultIntl {
@@ -39,17 +48,24 @@ export class DefaultIntl {
     OwlMomentDateTimeModule,
     IonicModule,
     CdkTableModule,
+    TooltipsModule,
+    MatIconModule,
   ],
   exports: [
     CommonModule,
-    NotFoundComponent,
     MomentModule,
     OwlDateTimeModule,
     OwlMomentDateTimeModule,
     HttpClientModule,
     CdkTableModule,
+    TooltipsModule,
+    CovalentExpansionPanelModule,
+    MatProgressBarModule,
+    MatIconModule,
+    MatSelectModule,
+    CovalentDataTableModule,
+    CovalentPagingModule,
   ],
-  declarations: [NotFoundComponent],
   providers: [
     AuthProvider,
     AuthGuardProvider,

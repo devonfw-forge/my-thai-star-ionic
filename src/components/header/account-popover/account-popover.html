@@ -1,0 +1,19 @@
+<ion-list>
+  <button
+    ion-item
+    *ngIf="auth.isPermited('CUSTOMER')"
+    (click)="openChangePasswordPopover()"
+  >
+    {{ 'main.userActions.changePassword' | translate }}
+  </button>
+  <button
+    ion-item
+    *ngIf="auth.isPermited('CUSTOMER')"
+    (click)="openTwitterAccountPopover()"
+  >
+    {{ 'main.userActions.twitterAccount' | translate }}
+  </button>
+  <button ion-item (click)="logout()">
+    {{ 'main.userActions.signOut' | translate }}
+  </button>
+</ion-list>

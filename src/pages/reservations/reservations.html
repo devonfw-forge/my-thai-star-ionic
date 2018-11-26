@@ -1,0 +1,118 @@
+<ion-header> <app-header></app-header> </ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <form (ngSubmit)="filter()" #filterForm="ngForm">
+      <div style="background-color: white">
+        <td-expansion-panel [label]="'cockpit.filter' | translate">
+          <ion-row
+            layout="row"
+            class="pad-left-md pad-right-md"
+            style="align-items:center; border-bottom: 1px solid lightgrey"
+            flex
+          >
+            <ion-col
+              class="justify-space-around"
+              style="align-items:center"
+              col-12
+              col-sm
+            >
+              <ion-input
+                [placeholder]="'formFields.email' | translate"
+                [(ngModel)]="filters.email"
+                name="email"
+              ></ion-input>
+            </ion-col>
+
+            <ion-col
+              class="justify-space-around"
+              style="align-items:center"
+              col-12
+              col-sm
+            >
+              <ion-input
+                [placeholder]="'formFields.referenceNumber' | translate"
+                [(ngModel)]="filters.bookingToken"
+                name="bookingToken"
+              ></ion-input>
+            </ion-col>
+          </ion-row>
+
+          <div class="align-right">
+            <button
+              ion-button
+              type="button"
+              (click)="clearFilters(filterForm)"
+              class="text-upper property-text-bold"
+            >
+              {{ 'buttons.clearFilters' | translate }}
+            </button>
+            <button
+              ion-button
+              type="submit"
+              color="accent"
+              class="text-upper property-text-bold"
+            >
+              {{ 'buttons.applyFilters' | translate }}
+            </button>
+          </div>
+        </td-expansion-panel>
+      </div>
+    </form>
+    <mat-progress-bar *ngIf="!reservations" color="accent" mode="indeterminate">
+    </mat-progress-bar>
+    <ion-card>
+      <ion-card-header>{{
+        'cockpit.reservations.title' | translate
+      }}</ion-card-header>
+      <hr />
+      <td-data-table
+        #dataTable
+        [data]="reservations"
+        [columns]="columns"
+        [sortable]="true"
+        clickable="true"
+        (rowClick)="selected($event)"
+        (sortChange)="sort($event)"
+      >
+        <ng-template
+          tdDataTableTemplate="booking.bookingDate"
+          let-value="value"
+          let-row="row"
+          let-column="column"
+        >
+          <div layout="row">
+            <span flex>{{ value | amParse: 'x' | amDateFormat: 'lll' }}</span>
+          </div>
+        </ng-template>
+      </td-data-table>
+      <div
+        class="mat-padding"
+        *ngIf="!dataTable.hasData"
+        layout="row"
+        layout-align="center center"
+      >
+        <h3>{{ 'table.noResults' | translate }}.</h3>
+      </div>
+      <td-paging-bar
+        #pagingBar
+        [pageSize]="pagination.size"
+        [total]="totalReservations"
+        (change)="page($event)"
+      >
+        <span hide-xs>{{ 'table.rowsPage' | translate }}:</span>
+        <mat-select [style.width.px]="50" [(ngModel)]="pagination.size">
+          <mat-option *ngFor="let size of pageSizes" [value]="size">
+            {{ size }}
+          </mat-option>
+        </mat-select>
+        <span
+          >{{ pagingBar.range }}
+          <span hide-xs hide-sm hide-md
+            >{{ 'table.of' | translate }} {{ pagingBar.total }}</span
+          ></span
+        >
+      </td-paging-bar>
+    </ion-card>
+  </ion-grid>
+</ion-content>

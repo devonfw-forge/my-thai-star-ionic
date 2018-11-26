@@ -1,0 +1,64 @@
+<ion-segment [(ngModel)]="tab">
+  <ion-segment-button value="login">
+    {{ 'userArea.loginTitle' | translate }}
+  </ion-segment-button>
+  <ion-segment-button value="register">
+    {{ 'userArea.signupTitle' | translate }}
+  </ion-segment-button>
+</ion-segment>
+<div [ngSwitch]="tab">
+  <form
+    *ngSwitchCase="'login'"
+    (ngSubmit)="submit(loginForm.form.value)"
+    class="pad"
+    #loginForm="ngForm"
+  >
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col col-12>
+          <ion-input
+            placeholder="{{'formFields.username' | translate}}"
+            ngModel
+            name="username"
+            required
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <ion-input
+            placeholder="{{'formFields.password' | translate}}"
+            ngModel
+            name="password"
+            type="password"
+            required
+          ></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-12>
+          <button
+            ion-button
+            class="text-upper"
+            type="button"
+            (click)="dismiss()"
+          >
+            {{ 'buttons.cancel' | translate }}
+          </button>
+          <button
+            ion-button
+            type="submit"
+            [disabled]="!loginForm.form.valid"
+            color="accent"
+            class="text-upper"
+          >
+            {{ 'buttons.login' | translate }}
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+  <ion-grid *ngSwitchCase="'register'"> </ion-grid>
+</div>

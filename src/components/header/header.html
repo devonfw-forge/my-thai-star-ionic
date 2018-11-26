@@ -1,12 +1,49 @@
 <ion-navbar>
-  <button ion-button menuToggle>
+  <button ion-button menuToggle="left">
     <ion-icon name="menu"></ion-icon>
   </button>
   <ion-title>
     <ion-icon name="star-outline"></ion-icon> My Thai Star
-    <div id="headerIconsDiv" style="display:inline-block;">
-      <ion-icon name="person" class="headerIcon"></ion-icon>
-      <ion-icon name="basket" class="headerIcon"></ion-icon>
-    </div>
   </ion-title>
+  <ion-buttons right>
+    <button
+      ion-button
+      icon-only
+      tooltip="{{'main.userActions.user' | translate}}"
+      positionV="bottom"
+      *ngIf="!auth.isLogged()"
+      (click)="openLoginPopover()"
+    >
+      <ion-icon name="person"></ion-icon>
+    </button>
+    <button
+      ion-button
+      icon-only
+      *ngIf="auth.isLogged()"
+      positionV="bottom"
+      tooltip="{{'main.userActions.user' | translate}}"
+      (click)="openAccountPopover($event)"
+    >
+      <ion-icon name="contact"></ion-icon>
+    </button>
+    <button
+      ion-button
+      (click)="openOrderModal()"
+      *ngIf="auth.isPermited('CUSTOMER')"
+      tooltip="{{'main.userActions.orders' | translate}}"
+      positionV="bottom"
+    >
+      <ion-icon name="basket"></ion-icon>
+      <ion-badge>{{ order.getNumberOrders() }}</ion-badge>
+    </button>
+  </ion-buttons>
+  <button
+    ion-button
+    menuToggle="right"
+    right
+    tooltip="{{ translate.currentLang | uppercase }}"
+    positionV="bottom"
+  >
+    <span class="flag-icon flag-icon-{{flag}}"></span>
+  </button>
 </ion-navbar>

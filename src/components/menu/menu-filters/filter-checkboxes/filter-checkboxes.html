@@ -1,0 +1,73 @@
+<div class="filter-checkboxes">
+  <div class="filter-divider">
+    <ion-item>
+      <ion-checkbox
+        [checked]="categoriesValue.mainDishes"
+        (ionChange)="onToggle('mainDishes')"
+      ></ion-checkbox>
+      <ion-label>{{ 'menu.filter.mainDishes' | translate }}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox
+        [checked]="categoriesValue.starters"
+        (ionChange)="onToggle('starters')"
+      ></ion-checkbox>
+      <ion-label>{{ 'menu.filter.starters' | translate }}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox
+        [checked]="categoriesValue.desserts"
+        (ionChange)="onToggle('desserts')"
+      ></ion-checkbox>
+      <ion-label>{{ 'menu.filter.desserts' | translate }}</ion-label>
+    </ion-item>
+  </div>
+  <div class="filter-divider">
+    <ion-item>
+      <ion-checkbox
+        [checked]="categoriesValue.noodle"
+        (ionChange)="onToggle('noodle')"
+      ></ion-checkbox>
+      <ion-label>{{ 'menu.filter.noodle' | translate }}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox
+        [checked]="categoriesValue.rice"
+        (ionChange)="onToggle('rice')"
+      ></ion-checkbox>
+      <ion-label>{{ 'menu.filter.rice' | translate }}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox
+        [checked]="categoriesValue.curry"
+        (ionChange)="onToggle('curry')"
+      ></ion-checkbox>
+      <ion-label>{{ 'menu.filter.curry' | translate }}</ion-label>
+    </ion-item>
+  </div>
+  <div class="filter-divider">
+    <ion-item>
+      <ion-checkbox
+        [checked]="categoriesValue.vegan"
+        (ionChange)="onToggle('vegan')"
+      ></ion-checkbox>
+      <ion-label>{{ 'menu.filter.vegan' | translate }}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox
+        [checked]="categoriesValue.vegetarian"
+        (ionChange)="onToggle('vegetarian')"
+      ></ion-checkbox>
+      <ion-label>{{ 'menu.filter.vegetarian' | translate }}</ion-label>
+    </ion-item>
+  </div>
+  <div class="filter-divider">
+    <ion-item>
+      <ion-checkbox
+        [checked]="categoriesValue.favourites"
+        (ionChange)="onToggle('favourites')"
+      ></ion-checkbox>
+      <ion-label>{{ 'menu.filter.favourites' | translate }}</ion-label>
+    </ion-item>
+  </div>
+</div>

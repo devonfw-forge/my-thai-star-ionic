@@ -1,0 +1,50 @@
+<form
+  [formGroup]="filtersForm"
+  (ngSubmit)="applyFilters($event)"
+  class="menu"
+  novalidate
+>
+  <div class="search">
+    <filter-search formControlName="searchBy" class="searchBy"></filter-search>
+    <filter-sort formControlName="sort" class="sortingBy"></filter-sort>
+  </div>
+
+  <hr />
+
+  <td-expansion-panel [label]="'menu.filterTitle' | translate">
+    <div class="menu-filters">
+      <filter-checkboxes formControlName="categories"></filter-checkboxes>
+
+      <div class="filter-sliders">
+        <div class="slider">
+          <span>{{ 'menu.filter.price' | translate }}</span>
+          <ion-range
+            formControlName="maxPrice"
+            max="50"
+            min="1"
+            step="1"
+            pin="true"
+          ></ion-range>
+        </div>
+        <div class="slider">
+          <span>{{ 'menu.filter.likes' | translate }}</span>
+          <ion-range
+            formControlName="minLikes"
+            max="500"
+            min="0"
+            step="5"
+            pin="true"
+          ></ion-range>
+        </div>
+      </div>
+    </div>
+  </td-expansion-panel>
+  <div class="filter-actions">
+    <button ion-button (click)="clearFilters($event, filtersForm)">
+      {{ 'buttons.clearFilters' | translate }}
+    </button>
+    <button ion-button type="submit" color="accent">
+      {{ 'buttons.applyFilters' | translate }}
+    </button>
+  </div>
+</form>

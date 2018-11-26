@@ -1,0 +1,62 @@
+<div
+  layout="row"
+  class="pad-top-sm pad-right-sm"
+  style="border-bottom: 1px solid lightgrey"
+  flex
+>
+  <button ion-button icon-only (click)="removeOrder()" class="push-bottom-xs">
+    <ion-icon style="color: lightgray" name="close-circle-outline"></ion-icon>
+  </button>
+
+  <div layout="column" class="pull-top-xs" flex>
+    <span class="orderName">{{ order.dish.name }}</span>
+    <div layout="row">
+      <span class="orderIngredients" *ngIf="extras.length === 0"> - </span>
+      <span class="orderIngredients">{{ extras }}</span>
+    </div>
+    <ion-label
+      (click)="removeComment()"
+      class="removeOrderComment"
+      *ngIf="order.orderLine.comment"
+      >{{ 'buttons.removeComment' | translate }}</ion-label
+    >
+    <ion-label
+      (click)="addComment()"
+      class="addOrderComment"
+      *ngIf="!order.orderLine.comment"
+      >{{ 'buttons.addComment' | translate }}</ion-label
+    >
+  </div>
+
+  <button
+    ion-button
+    icon-only
+    tooltip="{{'formFields.comment' | translate}}"
+    positionV="top"
+    (click)="openCommentDialog()"
+    [class.hideButton]="!order.orderLine.comment"
+    class="push-bottom-xs"
+  >
+    <ion-icon color="accent" name="text"></ion-icon>
+  </button>
+
+  <div layout="row" class="push-bottom-xs" flex>
+    <button
+      ion-button
+      icon-only
+      [disabled]="order.orderLine.amount == 1"
+      color="accent"
+      (click)="decreaseOrder()"
+    >
+      <ion-icon name="remove"></ion-icon>
+    </button>
+    <span class="push-top-sm">{{ order.orderLine.amount }}</span>
+    <button ion-button icon-only (click)="increaseOrder()" color="accent">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </div>
+
+  <span class="push-top-sm"
+    >{{ calculateOrderPrice() | number: '2.2-2' }} €</span
+  >
+</div>

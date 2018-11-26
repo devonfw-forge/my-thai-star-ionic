@@ -1,8 +1,17 @@
-<ion-header>
-    <app-header></app-header>
-</ion-header>
-
+<ion-header> <app-header></app-header> </ion-header>
 
 <ion-content padding>
+  <menu-filters (applyForm)="onFilterChange($event)"></menu-filters>
 
+  <div
+    *ngIf="(dishes$ | async) as dishes; else: loading"
+    class="card-container"
+  >
+    <menu-card *ngFor="let dish of dishes" [menu]="dish"></menu-card>
+  </div>
+
+  <ng-template #loading>
+    <mat-progress-bar #loading color="accent" mode="indeterminate">
+    </mat-progress-bar>
+  </ng-template>
 </ion-content>

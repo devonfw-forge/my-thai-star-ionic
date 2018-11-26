@@ -1,0 +1,20 @@
+menu-card-comments {
+  :host {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+  }
+
+  .item {
+    background-color: transparent !important;
+  }
+
+  .twitter-title {
+    font-size: 1.1em;
+    color: white;
+    white-space: normal;
+  }
+
+  .twitter-text {
+    font-size: 0.8em;
+    color: white;
+  }
+}

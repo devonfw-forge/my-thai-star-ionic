@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
@@ -26,6 +27,10 @@ import { UserAreaProvider } from '../providers/user-area/user-area';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CoreModule } from '../core/core.module';
+import { OrderProvider } from '../providers/order/order';
+import { OrdersPageModule } from '../pages/orders/orders.module';
+import { ReservationsPageModule } from '../pages/reservations/reservations.module';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -34,11 +39,15 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 @NgModule({
   declarations: [MyApp],
   imports: [
+    CoreModule,
+    ComponentsModule,
     HomePageModule,
     BookTablePageModule,
     MenuPageModule,
-    ComponentsModule,
+    OrdersPageModule,
+    ReservationsPageModule,
     BrowserModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot(MyApp),
     TranslateModule.forRoot({
       loader: {
@@ -67,6 +76,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MenuProvider,
     PriceCalculatorProvider,
     UserAreaProvider,
+    OrderProvider,
   ],
 })
 export class AppModule {}

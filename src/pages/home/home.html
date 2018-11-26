@@ -1,11 +1,11 @@
-<ion-header>
-    <app-header></app-header>
-</ion-header>
+<ion-header> <app-header></app-header> </ion-header>
 
 <ion-content padding>
-
-    <own-home-layout>
-        <own-home-card *ngFor="let tile of getTiles()" [tile]="tile" (buttonClick)="tile.navigate()"></own-home-card>
-    </own-home-layout>
-
+  <own-home-layout>
+    <own-home-card
+      *ngFor="let tile of getTiles()"
+      [tile]="tile"
+      (buttonClick)="tile.navigate()"
+    ></own-home-card>
+  </own-home-layout>
 </ion-content>

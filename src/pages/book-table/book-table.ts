@@ -1,22 +1,190 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
-
-/**
- * Generated class for the BookTablePage tabs.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, Checkbox, PopoverController } from 'ionic-angular';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ViewContainerRef,
+  ComponentFactoryResolver,
+  ComponentFactory,
+} from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { BookTablePopoverComponent } from '../../components/book-table/book-table-popover/book-table-popover';
+import { InvitationPopoverComponent } from '../../components/book-table/invitation-popover/invitation-popover';
+import { WindowProvider } from '../../providers/window/window';
+import { ToastProvider } from '../../providers/toast/toast';
+import { emailValidator } from '../../directives/email-validator/email-validator';
+import { last } from 'lodash';
+import { BookingInfo } from '../../backendModels/interfaces';
+import { AbstractControl } from '@angular/forms/src/model';
+import { TranslateService } from '@ngx-translate/core';
+import * as moment from 'moment';
+import { EmailChipComponent } from '../../components/book-table/email-chip/email-chip';
 
 @IonicPage()
 @Component({
   selector: 'page-book-table',
   templateUrl: 'book-table.html',
+  styles: ['./book-table.scss'],
 })
-export class BookTablePage {
+export class BookTablePage implements OnInit {
+  @ViewChild('emailChipContainer', { read: ViewContainerRef })
+  emailChipContainer: ViewContainerRef;
+  invitationModel: string[] = [];
+  minDate: Date = new Date();
+  bookForm: FormGroup;
+  invitationForm: FormGroup;
+  emailChipfactory: ComponentFactory<EmailChipComponent>;
+
+  reservationInfo: BookingInfo = {
+    booking: {
+      name: '',
+      email: '',
+      bookingDate: undefined,
+      bookingType: 0,
+    },
+    invitedGuests: undefined,
+  };
+
   tab: string;
 
-  constructor(public navCtrl: NavController) {
+  constructor(
+    public window: WindowProvider,
+    public translate: TranslateService,
+    public toastprovider: ToastProvider,
+    public popoverCtrl: PopoverController,
+    private componentFactoryResolver: ComponentFactoryResolver,
+  ) {
     this.tab = 'book';
+    this.emailChipfactory = this.componentFactoryResolver.resolveComponentFactory(
+      EmailChipComponent,
+    );
+  }
+
+  ngOnInit(): void {
+    this.invitationForm = new FormGroup({
+      bookingDate: new FormControl(
+        this.reservationInfo.booking.bookingDate,
+        Validators.required,
+      ),
+      name: new FormControl(
+        this.reservationInfo.booking.name,
+        Validators.required,
+      ),
+      email: new FormControl(this.reservationInfo.booking.email, [
+        Validators.required,
+        Validators.pattern(
+          /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+        ),
+      ]),
+      invitedGuests: new FormControl(this.invitationModel),
+    });
+
+    this.bookForm = new FormGroup({
+      bookingDate: new FormControl(
+        this.reservationInfo.booking.bookingDate,
+        Validators.required,
+      ),
+      name: new FormControl(
+        this.reservationInfo.booking.name,
+        Validators.required,
+      ),
+      email: new FormControl(this.reservationInfo.booking.email, [
+        Validators.required,
+        Validators.pattern(
+          /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+        ),
+      ]),
+      assistants: new FormControl(this.reservationInfo.booking.assistants, [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(8),
+      ]),
+    });
+
+    this.getFirstDayWeek();
+  }
+
+  get name(): AbstractControl {
+    return this.bookForm.get('name');
+  }
+  get email(): AbstractControl {
+    return this.bookForm.get('email');
+  }
+  get assistants(): AbstractControl {
+    return this.bookForm.get('assistants');
+  }
+
+  get invName(): AbstractControl {
+    return this.invitationForm.get('name');
+  }
+  get invEmail(): AbstractControl {
+    return this.invitationForm.get('email');
+  }
+
+  showBookTablePopover(checkbox: Checkbox): void {
+    let bookTablePopover = this.popoverCtrl.create(BookTablePopoverComponent, {
+      width: this.window.responsiveWidth(),
+      data: this.bookForm.value,
+    });
+    bookTablePopover.onDidDismiss(() => {
+      this.bookForm.reset();
+      checkbox.checked = false;
+    });
+    bookTablePopover.present();
+  }
+
+  showInvitePopover(checkbox: Checkbox): void {
+    let invitationPopover = this.popoverCtrl.create(
+      InvitationPopoverComponent,
+      {
+        width: this.window.responsiveWidth(),
+        data: this.bookForm.value,
+      },
+    );
+    invitationPopover.onDidDismiss(() => {
+      this.invitationForm.reset();
+      this.invitationModel = [];
+      checkbox.checked = false;
+    });
+    invitationPopover.present();
+  }
+
+  validateEmail(): void {
+    let email = last(this.invitationModel);
+    if (!emailValidator(email)) {
+      this.invitationModel.pop();
+      this.translate
+        .get('bookTable.formErrors.emailFormat')
+        .subscribe((text: string) => {
+          this.toastprovider.openToast(text, 1000, 'red');
+        });
+    } else {
+      let componentRef = this.emailChipContainer.createComponent(
+        this.emailChipfactory,
+      );
+      componentRef.instance.setLabel(email);
+      componentRef.instance.setComponentRef(componentRef);
+      componentRef.onDestroy(() =>
+        this.invitationModel.forEach(
+          (value: string, index: number, array: string[]) => {
+            if (value === componentRef.instance.labelText) array.splice(index);
+          },
+        ),
+      );
+    }
+  }
+
+  addEmail(email: string): void {
+    if (this.invitationModel.indexOf(email) > -1) {
+      return null;
+    }
+    this.invitationModel.push(email);
+    this.validateEmail();
+  }
+
+  getFirstDayWeek(): string {
+    moment.locale(this.translate.currentLang);
+    const firstDay: string = moment(moment().weekday(0)).format('d');
+    return firstDay;
   }
 }

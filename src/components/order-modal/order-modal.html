@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="dismiss()">
+        <ion-icon name="close-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{ 'sidenav.title' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div layout="column" class="pull-top pad-sm">
+    <h4
+      class="pad-bottom-sm text-upper"
+      style="border-bottom: 1px solid lightgrey"
+    >
+      {{ 'sidenav.header' | translate }}
+    </h4>
+    <div
+      layout="row"
+      *ngIf="orders.length < 1"
+      style="align-items:center"
+      class="justify-space-between push-bottom-lg"
+    >
+      <span>{{ 'sidenav.noSelection' | translate }}</span>
+      <button ion-button color="accent" (click)="navigateTo('MenuPage')">
+        {{ 'buttons.viewMenu' | translate }}
+      </button>
+    </div>
+    <div class="pull-top" [class.scrollOrders]="orders.length > 3">
+      <order *ngFor="let order of orders" [order]="order"></order>
+    </div>
+  </div>
+  <div
+    *ngIf="orders.length > 0"
+    layout="row"
+    class="justify-space-between pad-sm"
+  >
+    <h3>{{ 'formFields.total' | translate }}</h3>
+    <h3>{{ calculateTotal() | number: '1.2-2' }} €</h3>
+  </div>
+  <div layout="column" class="pad-sm">
+    <ion-card
+      *ngIf="!bookingId.value"
+      class="pad-sm"
+      style="background-color:bisque"
+    >
+      <div
+        layout="row"
+        class="justify-space-around"
+        style="align-items:center"
+        flex
+      >
+        <ion-icon class="mat-18 pad-right-sm" name="warning"></ion-icon>
+        <span flex="65" class="invitationAlert"
+          >{{ 'alerts.orderID' | translate }}
+        </span>
+        <button ion-button color="accent" (click)="navigateTo('BookTablePage')">
+          {{ 'buttons.bookTable' | translate }}
+        </button>
+      </div>
+    </ion-card>
+    <ion-input
+      #bookingId
+      placeholder="{{'sidenav.bookingId' | translate}}"
+    ></ion-input>
+    <ion-checkbox #terms class="push-left"></ion-checkbox>
+    <ion-label>{{ 'formFields.terms' | translate }}</ion-label>
+  </div>
+  <div style="text-align: right">
+    <button
+      ion-button
+      (click)="dismiss()"
+      class="text-upper property-text-bold"
+    >
+      {{ 'buttons.cancel' | translate }}
+    </button>
+    <button
+      ion-button
+      color="accent"
+      (click)="sendOrders(bookingId.value)"
+      [disabled]="!(bookingId.value.length > 0 && terms.checked)"
+      class="text-upper property-text-bold"
+    >
+      {{ 'buttons.send' | translate }}
+    </button>
+  </div>
+</ion-content>

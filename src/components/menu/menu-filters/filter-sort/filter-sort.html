@@ -1,0 +1,36 @@
+<div [class.disabled]="disabled">
+  <ion-row color="accent">
+    <ion-col>
+      <ion-select
+        [(ngModel)]="sortValue.name"
+        [placeholder]="'menu.filter.sort' | translate"
+        (ionChange)="onSelectChange($event)"
+        style="max-width:100%"
+      >
+        <ion-option value="price">
+          {{ 'menu.filter.price' | translate }}
+        </ion-option>
+        <ion-option value="likes">
+          {{ 'menu.filter.likes' | translate }}
+        </ion-option>
+        <ion-option value="name">
+          {{ 'menu.filter.name' | translate }}
+        </ion-option>
+      </ion-select>
+    </ion-col>
+
+    <ion-col col-auto>
+      <button
+        ion-button
+        icon-only
+        clear
+        color="accent"
+        (click)="changeSortDir($event)"
+        tooltip="sortValue.direction"
+        class="button-sort"
+      >
+        <ion-icon name="{{sortDirIcon}}"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+</div>

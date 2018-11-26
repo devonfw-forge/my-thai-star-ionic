@@ -1,0 +1,28 @@
+<ion-card class="details-card">
+  <div
+    class="menu-image"
+    [style.background-image]="'url(' + menuInfo.image.content + ')'"
+  >
+    <button
+      ion-fab
+      *ngIf="auth.isLogged()"
+      (click)="changeFavouriteState()"
+      class="favourite-button"
+    >
+      <ion-icon
+        name="start"
+        [class.fab-on]="!menuInfo.isfav"
+        [class.fab-off]="menuInfo.isfav"
+      >
+      </ion-icon>
+    </button>
+    <span *ngIf="!auth.isLogged()"></span>
+    <menu-card-comments class="reviews"></menu-card-comments>
+  </div>
+
+  <menu-card-details
+    class="pad"
+    [menuInfo]="menuInfo"
+    (clickOrder)="addOrderMenu()"
+  ></menu-card-details>
+</ion-card>

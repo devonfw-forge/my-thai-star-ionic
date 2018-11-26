@@ -1,0 +1,38 @@
+<h4 class="text-upper">{{ 'userArea.twitterDialog.title' | translate }}</h4>
+<form (ngSubmit)="twitterSubmit(twitterForm.form.value)" #twitterForm="ngForm">
+  <ion-row>
+    <ion-input
+      [placeholder]="'userArea.twitterDialog.twitterUsernamePH' | translate"
+      ngModel
+      name="username"
+      required
+    ></ion-input>
+  </ion-row>
+
+  <ion-row>
+    <ion-input
+      [placeholder]="'userArea.twitterDialog.twitterPasswordPH' | translate"
+      ngModel
+      name="password"
+      type="password"
+      required
+    ></ion-input>
+  </ion-row>
+
+  <div class="align-right" flex>
+    <button ion-button (click)="dismiss()" class="text-upper">
+      {{ 'buttons.cancel' | translate }}
+    </button>
+    <button
+      ion-button
+      icon-start
+      type="submit"
+      [disabled]="!twitterForm.form.valid"
+      color="accent"
+      class="text-upper"
+    >
+      <ion-icon name="logo-twitter"></ion-icon>
+      <span>{{ 'userArea.twitterDialog.loginButton' | translate }}</span>
+    </button>
+  </div>
+</form>

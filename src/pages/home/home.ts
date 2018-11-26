@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Tile } from '../../components/home/home-card/home-card';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { BookTablePage } from '../book-table/book-table';
+import { MenuPage } from '../menu/menu';
 @IonicPage()
 @Component({
   selector: 'public-home',
@@ -14,21 +16,21 @@ export class HomePage {
       contentKey: 'home.restaurantContent',
       img: './assets/images/thai-restaurant.jpg',
       buttonLabelKey: 'buttons.bookTable',
-      navigate: () => this.navigateTo('BookTablePage'),
+      navigate: () => this.navigateTo(BookTablePage),
     },
     menu: {
       titleKey: 'home.menuTitle',
       contentKey: 'home.menuContent',
       img: './assets/images/thai-restaurant-dish.jpg',
       buttonLabelKey: 'buttons.viewMenu',
-      navigate: () => this.navigateTo('MenuPage'),
+      navigate: () => this.navigateTo(MenuPage),
     },
   };
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
-  navigateTo(page: string): void {
-    this.navCtrl.push(page);
+  navigateTo(page: any): void {
+    this.navCtrl.setRoot(page);
   }
 
   getTiles(): TileWithNavigation[] {

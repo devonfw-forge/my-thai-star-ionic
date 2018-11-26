@@ -1,10 +1,12 @@
-import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { ToastProvider } from '../toast/toast';
 import { AuthProvider } from '../auth/auth';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { Events, App } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
+import { OrdersPage } from '../../pages/orders/orders';
+import { HomePage } from '../../pages/home/home';
 
 @Injectable()
 export class UserAreaProvider {
@@ -15,11 +17,12 @@ export class UserAreaProvider {
   authAlerts: any;
 
   constructor(
-    public snackBar: ToastProvider,
-    public router: Router,
+    public toastprovider: ToastProvider,
+    public events: Events,
     public translate: TranslateService,
     private http: HttpClient,
     public AuthProvider: AuthProvider,
+    public app: App,
   ) {
     this.translate.get('alerts.authAlerts').subscribe((result: any) => {
       this.authAlerts = result;
@@ -42,8 +45,9 @@ export class UserAreaProvider {
               this.AuthProvider.setLogged(true);
               this.AuthProvider.setUser(loginInfo.name);
               this.AuthProvider.setRole(loginInfo.role);
-              this.router.navigate(['orders']);
-              this.snackBar.openToast(
+              this.events.publish('navTo', OrdersPage);
+              //this.app.getRootNav().setRoot(OrdersPage);
+              this.toastprovider.openToast(
                 this.authAlerts.loginSuccess,
                 4000,
                 'green',
@@ -52,7 +56,7 @@ export class UserAreaProvider {
         },
         (err: any) => {
           this.AuthProvider.setLogged(false);
-          this.snackBar.openToast(err.message, 4000, 'red');
+          this.toastprovider.openToast(err.message, 4000, 'red');
         },
       );
   }
@@ -66,14 +70,18 @@ export class UserAreaProvider {
       // .map((res: LoginInfo) => res)
       .subscribe(
         () => {
-          this.snackBar.openToast(
+          this.toastprovider.openToast(
             this.authAlerts.registerSuccess,
             4000,
             'green',
           );
         },
         (error: any) => {
-          this.snackBar.openToast(this.authAlerts.registerFail, 4000, 'red');
+          this.toastprovider.openToast(
+            this.authAlerts.registerFail,
+            4000,
+            'red',
+          );
         },
       );
   }
@@ -83,8 +91,8 @@ export class UserAreaProvider {
     this.AuthProvider.setUser('');
     this.AuthProvider.setRole('CUSTOMER');
     this.AuthProvider.setToken('');
-    this.router.navigate(['restarant']);
-    this.snackBar.openToast(this.authAlerts.logoutSuccess, 4000, 'black');
+    this.events.publish('navTo', HomePage);
+    this.toastprovider.openToast(this.authAlerts.logoutSuccess, 4000, 'black');
   }
 
   changePassword(data: any): void {
@@ -97,10 +105,10 @@ export class UserAreaProvider {
       })
       .subscribe(
         (res: any) => {
-          this.snackBar.openToast(res.message, 4000, 'green');
+          this.toastprovider.openToast(res.message, 4000, 'green');
         },
         (error: any) => {
-          this.snackBar.openToast(error.message, 4000, 'red');
+          this.toastprovider.openToast(error.message, 4000, 'red');
         },
       );
   }

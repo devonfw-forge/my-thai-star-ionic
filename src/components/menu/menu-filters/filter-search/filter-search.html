@@ -1,0 +1,23 @@
+<ion-item>
+  <ion-input
+    [(ngModel)]="inputValue"
+    (input)="onChange($event)"
+    [placeholder]="'menu.filter.search' | translate"
+  >
+  </ion-input>
+  <button ion-button icon-only clear item-left type="button">
+    <ion-icon name="search"></ion-icon>
+  </button>
+
+  <button
+    ion-button
+    icon-only
+    clear
+    item-right
+    *ngIf="isSearchFieldNotEmpty()"
+    type="button"
+    (click)="clearSearchField()"
+  >
+    <ion-icon name="close"></ion-icon>
+  </button>
+</ion-item>

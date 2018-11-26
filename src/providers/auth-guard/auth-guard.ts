@@ -1,27 +1,20 @@
 import { Injectable } from '@angular/core';
-import {
-  CanActivate,
-  Router,
-  ActivatedRouteSnapshot,
-  RouterStateSnapshot,
-} from '@angular/router';
+
 import { AuthProvider } from '../auth/auth';
 import { ToastProvider } from '../toast/toast';
 import { TranslateService } from '@ngx-translate/core';
+import { Events } from 'ionic-angular';
 
 @Injectable()
-export class AuthGuardProvider implements CanActivate {
+export class AuthGuardProvider {
   constructor(
     public toastCtrl: ToastProvider,
-    private AuthProvider: AuthProvider,
-    private translate: TranslateService,
-    private router: Router,
+    public AuthProvider: AuthProvider,
+    public translate: TranslateService,
+    public events: Events,
   ) {}
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot,
-  ): boolean {
+  canAccessWaiter(): boolean {
     if (
       this.AuthProvider.isLogged() &&
       this.AuthProvider.isPermited('WAITER')
@@ -35,9 +28,6 @@ export class AuthGuardProvider implements CanActivate {
       });
     }
 
-    if (this.router.url === '/') {
-      this.router.navigate(['/restaurant']);
-    }
     return false;
   }
 }

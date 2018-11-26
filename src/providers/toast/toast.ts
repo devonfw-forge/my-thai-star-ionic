@@ -13,9 +13,11 @@ export class ToastProvider {
       cssClass: 'bgc-' + color + '-600',
     };
 
-    this.toastController.create({
-      ...{ showCloseButton: true, closeButtonText: 'OK' },
-      ...this.toastConfig,
-    });
+    this.toastController
+      .create({
+        ...{ showCloseButton: true, closeButtonText: 'OK' },
+        ...this.toastConfig,
+      })
+      .present();
   }
 }

@@ -4,7 +4,7 @@ import { DishView, ExtraView, OrderView } from '../../viewModels/interfaces';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Filter, Pagination } from '../../backendModels/interfaces';
-import { FilterFormData } from '../../components/menu-filters/menu-filters';
+import { FilterFormData } from '../../components/menu/menu-filters/menu-filters';
 
 const categoryNameToServerId: { [key: string]: number } = Object.freeze({
   mainDishes: 0,

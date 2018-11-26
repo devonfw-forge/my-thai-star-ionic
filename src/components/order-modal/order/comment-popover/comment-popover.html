@@ -1,0 +1,23 @@
+<span mat-dialog-title class="text-upper">{{
+  'sidenav.dialog.title' | translate
+}}</span>
+<span style="font-size: 0.9em">{{ 'sidenav.dialog.content' | translate }}</span>
+<<ion-textarea
+  placeholder="{{'formFields.comment' | translate}}"
+  #comment
+  style="resize: none"
+></ion-textarea>
+<div class="align-right" flex>
+  <button ion-button (click)="dismiss()" class="text-upper">
+    {{ 'buttons.cancel' | translate }}
+  </button>
+  <button
+    ion-button
+    [disabled]="!comment.value.length"
+    (click)="sendComment(comment.value)"
+    color="accent"
+    class="text-upper"
+  >
+    {{ 'buttons.send' | translate }}
+  </button>
+</div>
