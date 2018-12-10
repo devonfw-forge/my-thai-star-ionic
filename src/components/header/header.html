@@ -28,17 +28,21 @@
     </button>
     <button
       ion-button
+      icon-only
       (click)="openOrderModal()"
       *ngIf="auth.isPermited('CUSTOMER')"
       tooltip="{{'main.userActions.orders' | translate}}"
       positionV="bottom"
     >
       <ion-icon name="basket"></ion-icon>
-      <ion-badge>{{ order.getNumberOrders() }}</ion-badge>
+      <ion-badge *ngIf="order.getNumberOrders() > 0" color="warn"
+        ><span id="orderNumber">{{ order.getNumberOrders() }}</span></ion-badge
+      >
     </button>
   </ion-buttons>
   <button
     ion-button
+    icon-only
     menuToggle="right"
     right
     tooltip="{{ translate.currentLang | uppercase }}"

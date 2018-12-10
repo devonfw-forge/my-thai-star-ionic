@@ -26,7 +26,7 @@ import { MenuCardDetailsComponent } from './menu/menu-card/menu-card-details/men
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OrdersPopoverComponent } from './cockpit-area/orders-popover/orders-popover';
 import { ReservationsPopoverComponent } from './cockpit-area/reservations-popover/reservations-popover';
-
+import { DirectivesModule } from '../directives/directives.module';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -59,6 +59,7 @@ import { ReservationsPopoverComponent } from './cockpit-area/reservations-popove
     CoreModule,
     FormsModule,
     ReactiveFormsModule,
+    DirectivesModule,
   ],
   exports: [
     HeaderComponent,

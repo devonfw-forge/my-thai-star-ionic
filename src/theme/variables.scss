@@ -28,11 +28,11 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary: #488aff,
-  secondary: #32db64,
-  danger: #f53d3d,
-  light: #f4f4f4,
-  dark: #222,
+  primary: #795548,
+  secondary: #388e3c,
+  warn: #f44336,
+  twitter: #55acee,
+  background: #e0e0e0,
 );
 
 // App iOS Variables
@@ -103,4 +103,7 @@ $background: map-get($theme, background);
 @include angular-material-theme($theme);
 @include covalent-theme($theme);
 
-//@import url('picker.min.css');
+$tablet-min-width: 600px;
+$desktop-min-width: 1300px;
+
+$headings-font-weight: 700 !important;

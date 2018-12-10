@@ -1,43 +1,36 @@
-<span class="text-upper">{{ 'bookTable.dialog.title' | translate }}</span>
+<h6 class="text-upper">{{ 'bookTable.dialog.title' | translate }}</h6>
 <ion-grid>
   <ion-row class="justify-space-between">
-    <span>{{ 'formFields.date' | translate }}</span> <span>{{ date }}</span>
+    <ion-col>{{ 'formFields.date' | translate }}</ion-col>
+    <ion-col>{{ date }}</ion-col>
   </ion-row>
-  <span class="push-bottom-sm push-top-sm"> <hr /> </span>
+  <ion-item-divider></ion-item-divider>
   <ion-row class="justify-space-between">
-    <span>{{ 'formFields.name' | translate }}</span>
-    <span>{{ data.name }}</span>
+    <ion-col>{{ 'formFields.name' | translate }}</ion-col>
+    <ion-col>{{ data.name }}</ion-col>
   </ion-row>
-  <span class="push-bottom-sm push-top-sm">
-    <hr />
-    >
-  </span>
+  <ion-item-divider></ion-item-divider>
   <ion-row class="justify-space-between">
-    <span>{{ 'formFields.email' | translate }}</span>
-    <span>{{ data.email }}</span>
+    <ion-col>{{ 'formFields.email' | translate }}</ion-col>
+    <ion-col>{{ data.email }}</ion-col>
   </ion-row>
-  <span class="push-bottom-sm push-top-sm"> <hr /> </span>
+  <ion-item-divider></ion-item-divider>
   <ion-row class="justify-space-between">
     <ion-col col-6>
-      <span>{{ 'formFields.friends' | translate }}</span>
+      <ion-col>{{ 'formFields.friends' | translate }}</ion-col>
     </ion-col>
     <ion-col col-6>
-      <span *ngFor="let inv of data.invitedGuests">{{ inv }}</span>
+      <ion-row *ngFor="let inv of data.invitedGuests">{{ inv }}</ion-row>
     </ion-col>
   </ion-row>
-  <span class="push-bottom-sm push-top-sm"> <hr /> </span>
+  <ion-item-divider></ion-item-divider>
 </ion-grid>
 
 <div class="align-right" flex>
-  <button mat-button (click)="dismiss()" class="text-upper">
+  <button ion-button (click)="dismiss()" class="text-upper">
     {{ 'buttons.cancel' | translate }}
   </button>
-  <button
-    mat-button
-    (click)="sendInvitation()"
-    color="accent"
-    class="text-upper"
-  >
+  <button ion-button (click)="sendInvitation()" class="text-upper button-green">
     {{ 'buttons.send' | translate }}
   </button>
 </div>

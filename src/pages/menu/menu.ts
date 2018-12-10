@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { MenuProvider } from '../../providers/menu/menu';
 import { map } from 'rxjs/operators';
 import { FilterFormData } from '../../components/menu/menu-filters/menu-filters';
-import { Filter } from '../../backendModels/interfaces';
+import { Filter, Pageable } from '../../backendModels/interfaces';
 
 export interface Filters {
   searchBy: string;
@@ -30,9 +30,28 @@ export class MenuPage {
   ) {}
 
   onFilterChange(filters: FilterFormData): void {
-    const composedFilters: Filter = this.menuProvider.composeFilters(filters);
-    this.dishes$ = this.menuProvider
-      .getDishes(composedFilters)
-      .pipe(map((res) => res.result));
+    const pageable: Pageable = {
+      pageSize: 8,
+      pageNumber: 0,
+      sort: [
+        {
+          property: filters.sort.property,
+          direction: filters.sort.direction,
+        },
+      ],
+    };
+    const composedFilters: Filter = this.menuProvider.composeFilters(
+      pageable,
+      filters,
+    );
+    this.dishes$ = this.menuProvider.getDishes(composedFilters).pipe(
+      map((res) => {
+        if (!res) {
+          return [];
+        } else {
+          return res.content;
+        }
+      }),
+    );
   }
 }

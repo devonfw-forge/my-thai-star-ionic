@@ -1,2 +1,139 @@
 @import './../assets/styles/flag-icon.min.css';
 @import './../../assets/styles/picker.min.css';
+@import './../../assets/styles/platform.css';
+
+.item-divider {
+  max-height: 1px !important;
+  min-height: 1px !important;
+}
+
+.td-data-table-cell-content-wrapper {
+  .ng-star-inserted {
+    max-width: 100%;
+  }
+}
+
+.toast-red {
+  .toast-container {
+    background: color($colors, warn, base);
+  }
+}
+
+.toast-black {
+  .toast-container {
+    background: default;
+  }
+}
+
+.toast-green {
+  .toast-container {
+    background: color($colors, secondary, base);
+  }
+}
+
+.input-label {
+  color: #999;
+}
+
+.button {
+  color: black;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  box-shadow: none;
+}
+
+.greenText {
+  color: color($colors, secondary, base);
+}
+
+.button:hover {
+  background-color: lightgray !important;
+}
+
+.button-form-submit:enabled {
+  color: color($colors, secondary, base);
+}
+
+.button-green {
+  background-color: color($colors, secondary, base);
+  color: white;
+}
+
+.button-green:hover {
+  background-color: color($colors, secondary, base) !important;
+}
+
+.invalid {
+  color: color($colors, warn, base) !important;
+}
+
+.valid {
+  color: color($colors, secondary, base) !important;
+}
+
+.input-error {
+  font-size: 12px;
+  padding: 0px 0px 0px 16px;
+  color: color($colors, warn, base);
+}
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+.property-text-center {
+  text-align: center;
+}
+
+.justify-space-around {
+  justify-content: space-around;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.mat-simple-snackbar-action {
+  color: white !important;
+}
+
+.mat-list-item .mat-form-field-type-mat-select .mat-form-field-infix {
+  padding-top: 0;
+}
+
+/deep/ .mat-input-infix.mat-form-field-infix {
+  width: 100%;
+}
+
+.mat-toolbar {
+  z-index: 2;
+}
+
+.content {
+  background-color: color($colors, background, base);
+}
+
+public-main {
+  ion-menu {
+    .content {
+      background-color: white;
+    }
+    ion-content {
+      ion-icon {
+        color: #737373;
+        margin-right: 16px;
+        width: 16px;
+      }
+    }
+  }
+}

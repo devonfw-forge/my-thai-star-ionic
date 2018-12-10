@@ -1,16 +1,29 @@
-<span class="price"> {{ menuInfo.dish.price | number: '1.2-2' }} € </span>
-<h3 class="text-upper">{{ menuInfo.dish.name }}</h3>
+<ion-row>
+  <ion-col>
+    <h3 class="text-upper">{{ menuInfo.dish.name }}</h3>
+  </ion-col>
+  <ion-col class="price">
+    {{ menuInfo.dish.price | number: '1.2-2' }} €
+  </ion-col>
+</ion-row>
+
 <p class="description">{{ menuInfo.dish.description }}</p>
 <div class="extras">
   <div *ngFor="let extra of menuInfo.extras">
-    <ion-checkbox [checked]="extra.selected" (change)="onSelectExtra(extra)">
-    </ion-checkbox>
-    <ion-label>{{ extra.name }} +{{ extra.price }}€</ion-label>
+    <ion-item>
+      <ion-checkbox
+        [checked]="extra.selected"
+        (change)="onSelectExtra(extra)"
+        color="secondary"
+      >
+      </ion-checkbox>
+      <ion-label>{{ extra.name }} +{{ extra.price }}€</ion-label>
+    </ion-item>
   </div>
 </div>
 
-<div class="order">
-  <button mat-button color="accent" class="text-upper" (click)="onClickOrder()">
+<ion-row justify-content-end>
+  <button ion-button class="text-upper greenText" (click)="onClickOrder()">
     {{ 'buttons.addToOrder' | translate }}
   </button>
-</div>
+</ion-row>

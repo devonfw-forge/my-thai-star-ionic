@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PriceCalculatorProvider } from '../price-calculator/price-calculator';
+import { PriceCalculatorProvider } from './../price-calculator/price-calculator';
 import {
   BookingResponse,
   OrderResponse,
@@ -9,12 +9,12 @@ import {
 } from '../../viewModels/interfaces';
 import { map, cloneDeep } from 'lodash';
 import {
-  Pagination,
-  Sorting,
+  Pageable,
+  Sort,
   FilterCockpit,
-} from '../../backendModels/interfaces';
+} from './../../backendModels/interfaces';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { environment } from './../../environments/environment';
 
 @Injectable()
 export class WaiterCockpitProvider {
@@ -31,13 +31,13 @@ export class WaiterCockpitProvider {
   ) {}
 
   getOrders(
-    pagination: Pagination,
-    sorting: Sorting[],
+    pageable: Pageable,
+    sorting: Sort[],
     filters: FilterCockpit,
   ): Observable<OrderResponse[]> {
     let path: string;
-    filters.pagination = pagination;
-    filters.sort = sorting;
+    filters.pageable = pageable;
+    filters.pageable.sort = sorting;
     if (filters.email || filters.bookingToken) {
       path = this.filterOrdersRestPath;
     } else {
@@ -52,12 +52,12 @@ export class WaiterCockpitProvider {
   }
 
   getReservations(
-    pagination: Pagination,
-    sorting: Sorting[],
+    pageable: Pageable,
+    sorting: Sort[],
     filters: FilterCockpit,
   ): Observable<BookingResponse[]> {
-    filters.pagination = pagination;
-    filters.sort = sorting;
+    filters.pageable = pageable;
+    filters.pageable.sort = sorting;
     return this.http.post<BookingResponse[]>(
       `${environment.restServiceRoot}${this.getReservationsRestPath}`,
       filters,
@@ -65,7 +65,7 @@ export class WaiterCockpitProvider {
   }
 
   orderComposer(orderList: OrderView[]): OrderView[] {
-    let orders: OrderView[] = cloneDeep(orderList);
+    const orders: OrderView[] = cloneDeep(orderList);
     map(orders, (o: OrderViewResult) => {
       o.dish.price = this.priceCalculator.getPrice(o);
       o.extras = map(o.extras, 'name').join(', ');

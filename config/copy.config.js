@@ -16,6 +16,10 @@ module.exports = {
     src: ['{{ROOT}}/node_modules/ng-pick-datetime/assets/style/*'],
     dest: '{{WWW}}/assets/styles',
   },
+  copyCovalentPlatformCss: {
+    src: ['{{ROOT}}/node_modules/@covalent/core/common/platform.css'],
+    dest: '{{WWW}}/assets/styles',
+  },
 
   copyIndexContent: {
     src: [

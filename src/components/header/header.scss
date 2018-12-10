@@ -1,14 +1,44 @@
-#headerIconsDiv {
-  display: block;
-  float: right;
-}
+app-header {
+  ion-navbar {
+    ion-icon {
+      color: white;
+    }
+  }
 
-.headerIcon {
-  margin-left: 15px;
-}
+  ion-title .toolbar-title {
+    color: white;
+  }
 
-ion-icon {
-  color: #737373;
-}
+  ion-badge {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    height: 50%;
+    width: 50%;
+  }
 
-$modal-inset-box-shadow-color: rgba(0, 0, 0, 0.4);
+  #orderNumber {
+    text-align: center;
+    position: absolute;
+    right: 25%;
+    bottom: 10%;
+  }
+  ion-navbar .toolbar-background {
+    background-color: #3e2723;
+  }
+
+  @media (max-width: 600px) {
+    .forDesktop {
+      display: none;
+    }
+    .sidenavMobile {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .forMobile {
+      display: none;
+    }
+  }
+}

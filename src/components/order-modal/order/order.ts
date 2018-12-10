@@ -54,10 +54,12 @@ export class OrderComponent implements OnInit {
   }
 
   openCommentDialog(): void {
-    this.alertCtrl.create({
-      message: this.order.orderLine.comment,
-      title: 'Comment',
-      buttons: ['Close'],
-    });
+    this.alertCtrl
+      .create({
+        message: this.order.orderLine.comment,
+        title: 'Comment',
+        buttons: ['Close'],
+      })
+      .present();
   }
 }

@@ -1,3 +1,21 @@
-ion-chip {
-  max-width: 100%;
+email-chip {
+  margin-right: 5px;
+  ion-chip {
+    max-width: 100%;
+
+    .button {
+      background-color: rgba(0, 0, 0, 0);
+    }
+
+    .button:hover {
+      background-color: rgba(0, 0, 0, 0) !important;
+      .icon {
+        color: rgba(0, 0, 0, 0.54);
+      }
+    }
+
+    .icon {
+      color: grey;
+    }
+  }
 }

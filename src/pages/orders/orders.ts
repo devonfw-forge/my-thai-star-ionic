@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, PopoverController } from 'ionic-angular';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { WaiterCockpitProvider } from '../../providers/waiter-cockpit/waiter-cockpit';
-import { Pagination, FilterCockpit } from '../../backendModels/interfaces';
+import { Pageable, FilterCockpit } from '../../backendModels/interfaces';
 import * as moment from 'moment';
 import { OrdersPopoverComponent } from '../../components/cockpit-area/orders-popover/orders-popover';
 import {
@@ -22,10 +22,10 @@ import { AuthProvider } from '../../providers/auth/auth';
   templateUrl: 'orders.html',
 })
 export class OrdersPage implements OnInit {
-  private pagination: Pagination = {
-    size: 8,
-    page: 1,
-    total: 1,
+  private pageable: Pageable = {
+    pageSize: 8,
+    pageNumber: 0,
+    // total: 1,
   };
   private sorting: any[] = [];
 
@@ -74,10 +74,15 @@ export class OrdersPage implements OnInit {
 
   applyFilters(): void {
     this.waiterCockpitProvider
-      .getOrders(this.pagination, this.sorting, this.filters)
+      .getOrders(this.pageable, this.sorting, this.filters)
       .subscribe((data: any) => {
-        this.orders = data.result;
-        this.totalOrders = data.pagination.total;
+        if (!data) {
+          this.orders = [];
+          this.totalOrders = 0;
+        } else {
+          this.orders = data.content;
+          this.totalOrders = data.totalElements;
+        }
       });
   }
 
@@ -87,10 +92,10 @@ export class OrdersPage implements OnInit {
   }
 
   page(pagingEvent: IPageChangeEvent): void {
-    this.pagination = {
-      size: pagingEvent.pageSize,
-      page: pagingEvent.page,
-      total: 1,
+    this.pageable = {
+      pageSize: pagingEvent.pageSize,
+      pageNumber: pagingEvent.page - 1,
+      sort: this.pageable.sort,
     };
     this.applyFilters();
   }

@@ -4,6 +4,7 @@ import { MenuProvider } from '../../../providers/menu/menu';
 import { AuthProvider } from '../../../providers/auth/auth';
 import { OrderProvider } from '../../../providers/order/order';
 import { ModalController } from 'ionic-angular';
+import { OrderModalComponent } from '../../order-modal/order-modal';
 
 @Component({
   selector: 'menu-card',
@@ -21,7 +22,7 @@ export class MenuCardComponent {
 
   addOrderMenu(): void {
     this.orderProvider.addOrder(this.menuProvider.menuToOrder(this.menuInfo));
-    this.modalCtrl.create('OrderModalComponent');
+    this.modalCtrl.create(OrderModalComponent).present();
     this.menuProvider.clearSelectedExtras(this.menuInfo);
   }
 

@@ -6,6 +6,7 @@ import {
   ViewContainerRef,
   ComponentFactoryResolver,
   ComponentFactory,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BookTablePopoverComponent } from '../../components/book-table/book-table-popover/book-table-popover';
@@ -19,12 +20,31 @@ import { AbstractControl } from '@angular/forms/src/model';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import { EmailChipComponent } from '../../components/book-table/email-chip/email-chip';
+import {
+  trigger,
+  state,
+  transition,
+  style,
+  animate,
+} from '@angular/animations';
 
 @IonicPage()
 @Component({
   selector: 'page-book-table',
   templateUrl: 'book-table.html',
   styles: ['./book-table.scss'],
+  animations: [
+    trigger('itemState', [
+      state('in', style({ transform: 'translateY(0)' })),
+      //Enter
+      transition('void => *', [
+        style({
+          transform: 'translateY(-100%)',
+        }),
+        animate('300ms linear'),
+      ]),
+    ]),
+  ],
 })
 export class BookTablePage implements OnInit {
   @ViewChild('emailChipContainer', { read: ViewContainerRef })
@@ -34,6 +54,7 @@ export class BookTablePage implements OnInit {
   bookForm: FormGroup;
   invitationForm: FormGroup;
   emailChipfactory: ComponentFactory<EmailChipComponent>;
+  tab: string;
 
   reservationInfo: BookingInfo = {
     booking: {
@@ -45,7 +66,10 @@ export class BookTablePage implements OnInit {
     invitedGuests: undefined,
   };
 
-  tab: string;
+  resDate: string;
+  invDate: string;
+  resDateTouched: boolean;
+  invDateTouched: boolean;
 
   constructor(
     public window: WindowProvider,
@@ -53,6 +77,7 @@ export class BookTablePage implements OnInit {
     public toastprovider: ToastProvider,
     public popoverCtrl: PopoverController,
     private componentFactoryResolver: ComponentFactoryResolver,
+    public cd: ChangeDetectorRef,
   ) {
     this.tab = 'book';
     this.emailChipfactory = this.componentFactoryResolver.resolveComponentFactory(
@@ -61,6 +86,9 @@ export class BookTablePage implements OnInit {
   }
 
   ngOnInit(): void {
+    this.resDateTouched = false;
+    this.invDateTouched = false;
+
     this.invitationForm = new FormGroup({
       bookingDate: new FormControl(
         this.reservationInfo.booking.bookingDate,
@@ -126,9 +154,11 @@ export class BookTablePage implements OnInit {
       width: this.window.responsiveWidth(),
       data: this.bookForm.value,
     });
-    bookTablePopover.onDidDismiss(() => {
-      this.bookForm.reset();
-      checkbox.checked = false;
+    bookTablePopover.onDidDismiss((res: boolean) => {
+      if (res) {
+        this.bookForm.reset();
+        checkbox.checked = false;
+      }
     });
     bookTablePopover.present();
   }
@@ -138,13 +168,15 @@ export class BookTablePage implements OnInit {
       InvitationPopoverComponent,
       {
         width: this.window.responsiveWidth(),
-        data: this.bookForm.value,
+        data: this.invitationForm.value,
       },
     );
-    invitationPopover.onDidDismiss(() => {
-      this.invitationForm.reset();
-      this.invitationModel = [];
-      checkbox.checked = false;
+    invitationPopover.onDidDismiss((res: boolean) => {
+      if (res) {
+        this.invitationForm.reset();
+        this.invitationModel = [];
+        checkbox.checked = false;
+      }
     });
     invitationPopover.present();
   }
@@ -180,11 +212,39 @@ export class BookTablePage implements OnInit {
     }
     this.invitationModel.push(email);
     this.validateEmail();
+    this.invitationForm.get('invitedGuests').setValue(this.invitationModel);
   }
 
   getFirstDayWeek(): string {
     moment.locale(this.translate.currentLang);
     const firstDay: string = moment(moment().weekday(0)).format('d');
     return firstDay;
+  }
+
+  setDate(form: string, value: any): void {
+    if (form === 'inv') {
+      this.invDate = this.invitationForm
+        .get('bookingDate')
+        .value.format('L LT');
+    }
+    if (form === 'res') {
+      this.resDate = this.bookForm.get('bookingDate').value.format('L LT');
+    }
+  }
+
+  changeDate(form: string, value: string): void {
+    let newDate = moment(value);
+    if (form === 'inv') {
+      newDate.locale(this.invitationForm.get('bookingDate').value.locale());
+      this.invitationForm.get('bookingDate').setValue(newDate);
+    }
+    if (form === 'res') {
+      newDate.locale(this.bookForm.get('bookingDate').value.locale());
+      this.bookForm.get('bookingDate').setValue(newDate);
+    }
+  }
+
+  isDate(value: string): boolean {
+    return moment(value, 'L LT', true).isValid();
   }
 }

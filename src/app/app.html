@@ -43,6 +43,10 @@
         [disabled]="translate.currentLang === lang.value"
         (click)="changeLanguage(lang.value)"
       >
+        <span
+          class="flag-icon flag-icon-{{lang.flag}}"
+          style="margin-right:16px;"
+        ></span>
         <span>{{ lang.label }}</span>
       </button>
     </ion-list>

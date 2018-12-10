@@ -1,30 +1,33 @@
-<span class="text-upper">{{ 'bookTable.dialog.title' | translate }}</span>
-<ion-grid>
-  <ion-row class="justify-space-between" flex>
-    <span>{{ 'formFields.date' | translate }}</span> <span>{{ date }}</span>
-  </ion-row>
-  <span class="push-bottom-sm push-top-sm"> <hr /> </span>
-  <ion-row class="justify-space-between" flex>
-    <span>{{ 'formFields.name' | translate }}</span>
-    <span>{{ data.name }}</span>
-  </ion-row>
-  <span class="push-bottom-sm push-top-sm"> <hr /> </span>
-  <ion-row class="justify-space-between" flex>
-    <span>{{ 'formFields.email' | translate }}</span>
-    <span>{{ data.email }}</span>
-  </ion-row>
-  <span class="push-bottom-sm push-top-sm"> <hr /> </span>
-  <ion-row class="justify-space-between" flex>
-    <span>{{ 'formFields.assistants' | translate }}</span>
-    <span>{{ data.assistants }}</span>
-  </ion-row>
-  <span class="push-bottom-sm push-top-sm"> <hr /> </span>
-</ion-grid>
-<div class="align-right" flex>
-  <button ion-button (click)="dismiss()" class="text-upper">
-    {{ 'buttons.cancel' | translate }}
-  </button>
-  <button ion-button (click)="sendBooking()" color="accent" class="text-upper">
-    {{ 'buttons.send' | translate }}
-  </button>
+<div padding>
+  <h6 class="text-upper">{{ 'bookTable.dialog.title' | translate }}</h6>
+  <ion-grid>
+    <ion-row class="justify-space-between" flex>
+      <ion-col>{{ 'formFields.date' | translate }}</ion-col>
+      <ion-col>{{ date }}</ion-col>
+    </ion-row>
+    <ion-item-divider> </ion-item-divider>
+    <ion-row class="justify-space-between" flex>
+      <ion-col>{{ 'formFields.name' | translate }}</ion-col>
+      <ion-col>{{ data.name }}</ion-col>
+    </ion-row>
+    <ion-item-divider> </ion-item-divider>
+    <ion-row class="justify-space-between" flex>
+      <ion-col>{{ 'formFields.email' | translate }}</ion-col>
+      <ion-col>{{ data.email }}</ion-col>
+    </ion-row>
+    <ion-item-divider> </ion-item-divider>
+    <ion-row class="justify-space-between" flex>
+      <ion-col>{{ 'formFields.assistants' | translate }}</ion-col>
+      <ion-col>{{ data.assistants }}</ion-col>
+    </ion-row>
+    <ion-item-divider></ion-item-divider>
+  </ion-grid>
+  <div class="align-right" flex>
+    <button ion-button (click)="dismiss()" class="text-upper">
+      {{ 'buttons.cancel' | translate }}
+    </button>
+    <button ion-button (click)="sendBooking()" class="text-upper button-green">
+      {{ 'buttons.send' | translate }}
+    </button>
+  </div>
 </div>

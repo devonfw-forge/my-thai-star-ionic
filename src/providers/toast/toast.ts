@@ -10,7 +10,7 @@ export class ToastProvider {
     this.toastConfig = {
       message: message,
       duration: duration,
-      cssClass: 'bgc-' + color + '-600',
+      cssClass: 'toast-' + color,
     };
 
     this.toastController

@@ -9,8 +9,6 @@
     <filter-sort formControlName="sort" class="sortingBy"></filter-sort>
   </div>
 
-  <hr />
-
   <td-expansion-panel [label]="'menu.filterTitle' | translate">
     <div class="menu-filters">
       <filter-checkboxes formControlName="categories"></filter-checkboxes>
@@ -43,7 +41,7 @@
     <button ion-button (click)="clearFilters($event, filtersForm)">
       {{ 'buttons.clearFilters' | translate }}
     </button>
-    <button ion-button type="submit" color="accent">
+    <button ion-button type="submit" class="greenText">
       {{ 'buttons.applyFilters' | translate }}
     </button>
   </div>

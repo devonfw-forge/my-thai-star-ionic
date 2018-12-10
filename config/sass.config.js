@@ -43,7 +43,6 @@ module.exports = {
     'node_modules/ionicons/dist/scss',
     'node_modules/ionic-angular/fonts',
     'node_modules/@angular/material',
-    'node_modules/ng-pick-datetime/assets/style',
     'node_modules/@covalent/core/theming',
     'src/assets/style',
   ],

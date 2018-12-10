@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { DishView, ExtraView, OrderView } from '../../viewModels/interfaces';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Filter, Pagination } from '../../backendModels/interfaces';
+import { Filter, Pageable } from '../../backendModels/interfaces';
 import { FilterFormData } from '../../components/menu/menu-filters/menu-filters';
 
 const categoryNameToServerId: { [key: string]: number } = Object.freeze({
@@ -35,21 +35,21 @@ export class MenuProvider {
     };
   }
 
-  composeFilters(filters: FilterFormData): Filter {
+  composeFilters(pageable: Pageable, filters: FilterFormData): Filter {
     const categories: { id: string }[] = Object.keys(filters.categories)
       .filter((categoryKey: string) => filters.categories[categoryKey])
       .map((categoryKey: string) => ({
         id: categoryNameToServerId[categoryKey].toString(),
       }));
+    if (!filters.sort.property) {
+      filters.sort = undefined;
+      pageable.sort = undefined;
+    }
+
     return {
       categories,
       searchBy: filters.searchBy,
-      sort: [
-        {
-          name: filters.sort.name,
-          direction: filters.sort.direction,
-        },
-      ],
+      pageable,
       maxPrice: filters.maxPrice,
       minLikes: filters.minLikes,
       isFav: undefined, // TODO: what is this field? It was present in interface but setting it will cause errors ...
@@ -64,8 +64,8 @@ export class MenuProvider {
 
   getDishes(
     filters: Filter,
-  ): Observable<{ pagination: Pagination; result: DishView[] }> {
-    return this.http.post<{ pagination: Pagination; result: DishView[] }>(
+  ): Observable<{ pageable: Pageable; content: DishView[] }> {
+    return this.http.post<{ pageable: Pageable; content: DishView[] }>(
       `${environment.restServiceRoot}${this.filtersRestPath}`,
       filters,
     );

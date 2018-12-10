@@ -16,23 +16,44 @@
     <ion-grid fixed>
       <ion-row>
         <ion-col col-12>
-          <ion-input
-            placeholder="{{'formFields.username' | translate}}"
-            ngModel
-            name="username"
-            required
-          ></ion-input>
+          <ion-item>
+            <ion-label
+              floating
+              [class.invalid]="
+                username.invalid && (username.dirty || username.touched)
+              "
+              [class.valid]="username.valid"
+              >{{ 'formFields.username' | translate }} *</ion-label
+            >
+            <ion-input
+              color="secondary"
+              ngModel
+              name="username"
+              required
+              #username="ngModel"
+            ></ion-input>
+          </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col col-12>
-          <ion-input
-            placeholder="{{'formFields.password' | translate}}"
-            ngModel
-            name="password"
-            type="password"
-            required
-          ></ion-input>
+          <ion-item>
+            <ion-label
+              floating
+              [class.invalid]="
+                password.invalid && (password.dirty || password.touched)
+              "
+              [class.valid]="password.valid"
+              >{{ 'formFields.password' | translate }} *</ion-label
+            >
+            <ion-input
+              name="password"
+              type="password"
+              ngModel
+              #password="ngModel"
+              required
+            ></ion-input>
+          </ion-item>
         </ion-col>
       </ion-row>
 
@@ -49,9 +70,8 @@
           <button
             ion-button
             type="submit"
-            [disabled]="!loginForm.form.valid"
-            color="accent"
-            class="text-upper"
+            [disabled]="!loginForm.valid"
+            class="text-upper button-form-submit"
           >
             {{ 'buttons.login' | translate }}
           </button>
@@ -60,5 +80,101 @@
     </ion-grid>
   </form>
 
-  <ion-grid *ngSwitchCase="'register'"> </ion-grid>
+  <form
+    *ngSwitchCase="'register'"
+    (ngSubmit)="submit(registerForm.value)"
+    class="pad"
+    #registerForm="ngForm"
+  >
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label
+              floating
+              [class.invalid]="email.invalid && (email.dirty || email.touched)"
+              [class.valid]="email.valid"
+              >{{ 'formFields.email' | translate }} *</ion-label
+            >
+            <ion-input
+              color="secondary"
+              ngModel
+              name="email"
+              #email="ngModel"
+              required
+              validateEmail
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label
+              floating
+              [class.invalid]="
+                password1.invalid && (password1.dirty || password1.touched)
+              "
+              [class.valid]="password1.valid"
+              >{{ 'formFields.password' | translate }} *</ion-label
+            >
+            <ion-input
+              name="password1"
+              type="password"
+              ngModel
+              required
+              validateEqual="password2"
+              reverse="true"
+              #password1="ngModel"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-12>
+          <ion-item>
+            <ion-label
+              floating
+              [class.invalid]="
+                password2.invalid && (password2.dirty || password2.touched)
+              "
+              [class.valid]="password2.valid"
+              >{{ 'formFields.confirmPassword' | translate }} *</ion-label
+            >
+            <ion-input
+              name="password2"
+              type="password"
+              ngModel
+              required
+              validateEqual="password1"
+              reverse="false"
+              #password2="ngModel"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-12>
+          <button
+            ion-button
+            class="text-upper"
+            type="button"
+            (click)="dismiss()"
+          >
+            {{ 'buttons.cancel' | translate }}
+          </button>
+          <button
+            ion-button
+            type="submit"
+            [disabled]="!registerForm.valid"
+            class="text-upper button-form-submit"
+          >
+            {{ 'buttons.login' | translate }}
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </div>

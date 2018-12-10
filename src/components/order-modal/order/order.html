@@ -5,7 +5,7 @@
   flex
 >
   <button ion-button icon-only (click)="removeOrder()" class="push-bottom-xs">
-    <ion-icon style="color: lightgray" name="close-circle-outline"></ion-icon>
+    <ion-icon style="color: grey" name="close-circle-outline"></ion-icon>
   </button>
 
   <div layout="column" class="pull-top-xs" flex>
@@ -34,10 +34,10 @@
     tooltip="{{'formFields.comment' | translate}}"
     positionV="top"
     (click)="openCommentDialog()"
-    [class.hideButton]="!order.orderLine.comment"
+    *ngIf="order.orderLine.comment"
     class="push-bottom-xs"
   >
-    <ion-icon color="accent" name="text"></ion-icon>
+    <ion-icon color="secondary" name="text"></ion-icon>
   </button>
 
   <div layout="row" class="push-bottom-xs" flex>
@@ -45,13 +45,13 @@
       ion-button
       icon-only
       [disabled]="order.orderLine.amount == 1"
-      color="accent"
+      class="greenText"
       (click)="decreaseOrder()"
     >
       <ion-icon name="remove"></ion-icon>
     </button>
     <span class="push-top-sm">{{ order.orderLine.amount }}</span>
-    <button ion-button icon-only (click)="increaseOrder()" color="accent">
+    <button ion-button icon-only (click)="increaseOrder()" class="greenText">
       <ion-icon name="add"></ion-icon>
     </button>
   </div>

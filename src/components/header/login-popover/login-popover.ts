@@ -9,6 +9,8 @@ import { UserAreaProvider } from '../../../providers/user-area/user-area';
 })
 export class LoginPopoverComponent {
   tab: string;
+  loginForm: FormGroup;
+  registerForm: FormGroup;
   constructor(
     public viewCtrl: ViewController,
     public userProvider: UserAreaProvider,

@@ -1,12 +1,12 @@
 <ion-card>
-  <img src="{{tile.img}}">
+  <img src="{{tile.img}}" />
   <ion-card-content>
-    <div class="tile-content">
-      <h3>{{tile.titleKey | translate}}</h3>
-      <p> {{tile.contentKey | translate}} </p>
-    </div>
+    <h2 class="tile-content">{{ tile.titleKey | translate }}</h2>
+    <p class="tile-content">{{ tile.contentKey | translate }}</p>
   </ion-card-content>
-  <button ion-button color="accent" (click)="onButtonClick($event)">
-    {{tile.buttonLabelKey | translate}}
-  </button>
+  <div class="tile-action">
+    <button ion-button class="button-green" (click)="onButtonClick($event)">
+      {{ tile.buttonLabelKey | translate }}
+    </button>
+  </div>
 </ion-card>

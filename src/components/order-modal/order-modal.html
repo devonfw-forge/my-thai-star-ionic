@@ -9,7 +9,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding style="background-color:white !important;">
   <div layout="column" class="pull-top pad-sm">
     <h4
       class="pad-bottom-sm text-upper"
@@ -24,7 +24,7 @@
       class="justify-space-between push-bottom-lg"
     >
       <span>{{ 'sidenav.noSelection' | translate }}</span>
-      <button ion-button color="accent" (click)="navigateTo('MenuPage')">
+      <button ion-button class="greenText" (click)="navigateTo('MenuPage')">
         {{ 'buttons.viewMenu' | translate }}
       </button>
     </div>
@@ -56,17 +56,25 @@
         <span flex="65" class="invitationAlert"
           >{{ 'alerts.orderID' | translate }}
         </span>
-        <button ion-button color="accent" (click)="navigateTo('BookTablePage')">
+        <button
+          ion-button
+          class="greenText"
+          (click)="navigateTo('BookTablePage')"
+        >
           {{ 'buttons.bookTable' | translate }}
         </button>
       </div>
     </ion-card>
-    <ion-input
-      #bookingId
-      placeholder="{{'sidenav.bookingId' | translate}}"
-    ></ion-input>
-    <ion-checkbox #terms class="push-left"></ion-checkbox>
-    <ion-label>{{ 'formFields.terms' | translate }}</ion-label>
+    <ion-item>
+      <ion-label floating class="input-label">{{
+        'sidenav.bookingId' | translate
+      }}</ion-label>
+      <ion-input #bookingId></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-checkbox #terms class="push-left"></ion-checkbox>
+      <ion-label>{{ 'formFields.terms' | translate }}</ion-label>
+    </ion-item>
   </div>
   <div style="text-align: right">
     <button
@@ -78,10 +86,9 @@
     </button>
     <button
       ion-button
-      color="accent"
       (click)="sendOrders(bookingId.value)"
       [disabled]="!(bookingId.value.length > 0 && terms.checked)"
-      class="text-upper property-text-bold"
+      class="text-upper property-text-bold button-form-submit"
     >
       {{ 'buttons.send' | translate }}
     </button>

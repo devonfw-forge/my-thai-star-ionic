@@ -1,6 +1,6 @@
 <ion-header> <app-header></app-header> </ion-header>
 
-<ion-content padding>
+<ion-content>
   <ion-grid>
     <form (ngSubmit)="filter()" #filterForm="ngForm">
       <div style="background-color: white">
@@ -17,11 +17,12 @@
               col-12
               col-sm
             >
-              <ion-input
-                [placeholder]="'formFields.email' | translate"
-                [(ngModel)]="filters.email"
-                name="email"
-              ></ion-input>
+              <ion-item>
+                <ion-label floating>{{
+                  'formFields.email' | translate
+                }}</ion-label>
+                <ion-input [(ngModel)]="filters.email" name="email"></ion-input>
+              </ion-item>
             </ion-col>
 
             <ion-col
@@ -30,15 +31,19 @@
               col-12
               col-sm
             >
-              <ion-input
-                [placeholder]="'formFields.referenceNumber' | translate"
-                [(ngModel)]="filters.bookingToken"
-                name="bookingToken"
-              ></ion-input>
+              <ion-item>
+                <ion-label floating>{{
+                  'formFields.referenceNumber' | translate
+                }}</ion-label>
+                <ion-input
+                  [(ngModel)]="filters.bookingToken"
+                  name="bookingToken"
+                ></ion-input>
+              </ion-item>
             </ion-col>
           </ion-row>
 
-          <div class="align-right">
+          <ion-row justify-content-end>
             <button
               ion-button
               type="button"
@@ -50,12 +55,11 @@
             <button
               ion-button
               type="submit"
-              color="accent"
-              class="text-upper property-text-bold"
+              class="text-upper property-text-bold greenText"
             >
               {{ 'buttons.applyFilters' | translate }}
             </button>
-          </div>
+          </ion-row>
         </td-expansion-panel>
       </div>
     </form>
@@ -65,7 +69,7 @@
       <ion-card-header>{{
         'cockpit.reservations.title' | translate
       }}</ion-card-header>
-      <hr />
+      <ion-item-divider> </ion-item-divider>
       <td-data-table
         #dataTable
         [data]="reservations"
@@ -96,12 +100,12 @@
       </div>
       <td-paging-bar
         #pagingBar
-        [pageSize]="pagination.size"
+        [pageSize]="pageable.pageSize"
         [total]="totalReservations"
         (change)="page($event)"
       >
         <span hide-xs>{{ 'table.rowsPage' | translate }}:</span>
-        <mat-select [style.width.px]="50" [(ngModel)]="pagination.size">
+        <mat-select [style.width.px]="50" [(ngModel)]="pageable.pageSize">
           <mat-option *ngFor="let size of pageSizes" [value]="size">
             {{ size }}
           </mat-option>

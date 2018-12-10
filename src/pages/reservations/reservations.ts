@@ -6,11 +6,7 @@ import {
   PopoverController,
 } from 'ionic-angular';
 import { WaiterCockpitProvider } from '../../providers/waiter-cockpit/waiter-cockpit';
-import {
-  Sorting,
-  Pagination,
-  FilterCockpit,
-} from '../../backendModels/interfaces';
+import { Pageable, FilterCockpit, Sort } from '../../backendModels/interfaces';
 import { ReservationView } from '../../viewModels/interfaces';
 import {
   ITdDataTableColumn,
@@ -29,15 +25,15 @@ import { ReservationsPopoverComponent } from '../../components/cockpit-area/rese
   templateUrl: 'reservations.html',
 })
 export class ReservationsPage {
-  private sorting: Sorting[] = [];
+  private sorting: Sort[] = [];
 
-  pagination: Pagination = {
-    size: 8,
-    page: 1,
-    total: 1,
+  pageable: Pageable = {
+    pageSize: 8,
+    pageNumber: 0,
+    // total: 1,
   };
 
-  reservations: ReservationView;
+  reservations: ReservationView[];
   totalReservations: number;
 
   columns: ITdDataTableColumn[];
@@ -78,16 +74,21 @@ export class ReservationsPage {
   }
 
   filter(): void {
-    this.pagination.page = 1;
+    this.pageable.pageNumber = 0;
     this.applyFilters();
   }
 
   applyFilters(): void {
     this.waiterCockpitProvider
-      .getReservations(this.pagination, this.sorting, this.filters)
+      .getReservations(this.pageable, this.sorting, this.filters)
       .subscribe((data: any) => {
-        this.reservations = data.result;
-        this.totalReservations = data.pagination.total;
+        if (!data) {
+          this.reservations = [];
+          this.totalReservations = 0;
+        } else {
+          this.reservations = data.content;
+          this.totalReservations = data.totalElements;
+        }
       });
   }
 
@@ -97,10 +98,10 @@ export class ReservationsPage {
   }
 
   page(pagingEvent: IPageChangeEvent): void {
-    this.pagination = {
-      size: pagingEvent.pageSize,
-      page: pagingEvent.page,
-      total: 1,
+    this.pageable = {
+      pageSize: pagingEvent.pageSize,
+      pageNumber: pagingEvent.page - 1,
+      sort: this.pageable.sort,
     };
     this.applyFilters();
   }
@@ -108,7 +109,7 @@ export class ReservationsPage {
   sort(sortEvent: ITdDataTableSortChangeEvent): void {
     this.sorting = [];
     this.sorting.push({
-      name: sortEvent.name.split('.').pop(),
+      property: sortEvent.name.split('.').pop(),
       direction: '' + sortEvent.order,
     });
     this.applyFilters();

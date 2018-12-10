@@ -9,7 +9,6 @@ import { find, filter, isEqual, remove, cloneDeep } from 'lodash';
 import { OrderListInfo, OrderInfo } from '../../backendModels/interfaces';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
-import { AuthGuardProvider } from '../auth-guard/auth-guard';
 
 const isOrderEqual: Function = (orderToFind: OrderView) => (o: OrderView) =>
   o.dish.name === orderToFind.dish.name &&
@@ -20,7 +19,7 @@ export class OrderProvider {
   private readonly saveOrdersPath: string = 'ordermanagement/v1/order';
   private orders: OrderView[] = [];
 
-  constructor(private http: HttpClient, private authGuard: AuthGuardProvider) {}
+  constructor(private http: HttpClient) {}
 
   public getOrderData(): any[] {
     return this.orders;

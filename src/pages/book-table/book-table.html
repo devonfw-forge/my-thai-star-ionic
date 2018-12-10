@@ -4,7 +4,7 @@
   <div class="property-text-center pad-top-sm pad-right-sm pad-left-sm" flex>
     <h3>{{ 'bookTable.title' | translate }}</h3>
   </div>
-  <ion-card class="push-lg">
+  <ion-card>
     <ion-segment [(ngModel)]="tab">
       <ion-segment-button value="book">
         {{ 'bookTable.bookingTab' | translate }}
@@ -20,93 +20,156 @@
             <img src="./assets/images/slider-1.jpg" />
           </ion-col>
 
-          <ion-col col-12 col-sm>
+          <ion-col col-12 col-sm class="pad">
+            <div layout="column" flex>
+              <span class="title-card property-text-bold text-upper">{{
+                'bookTable.bookingTitle' | translate
+              }}</span>
+              <span class="subtitle-card push-bottom">{{
+                'bookTable.bookingSubtitle' | translate
+              }}</span>
+            </div>
+            <span (click)="this.resDateTouched = true">
+              <ion-item>
+                <ion-label
+                  floating
+                  [class.input-label]="!resDateTouched"
+                  [class.invalid]="
+                    !isDate(this.bookForm.get('bookingDate').value) &&
+                    resDateTouched
+                  "
+                  [class.valid]="isDate(this.bookForm.get('bookingDate').value)"
+                  >{{ 'formFields.dateTime' | translate }}</ion-label
+                >
+                <ion-input
+                  [(ngModel)]="resDate"
+                  (input)="changeDate('res', $event.target.value)"
+                >
+                </ion-input>
+                <button
+                  ion-button
+                  icon-only
+                  item-end
+                  [owlDateTimeTrigger]="booking1"
+                  style="align-self: flex-end"
+                >
+                  <ion-icon name="calendar"></ion-icon>
+                </button>
+              </ion-item>
+            </span>
             <form
-              class="pad"
               [formGroup]="bookForm"
               (keydown.enter)="$event.preventDefault()"
             >
+              <input
+                [min]="minDate"
+                [owlDateTime]="booking1"
+                style="display:none;"
+                formControlName="bookingDate"
+                (dateTimeChange)="setDate('res')"
+              />
+              <owl-date-time
+                [pickerMode]="'dialog'"
+                [firstDayOfWeek]="getFirstDayWeek()"
+                #booking1
+              ></owl-date-time>
               <div layout="column" flex>
-                <span class="title-card property-text-bold text-upper">{{
-                  'bookTable.bookingTitle' | translate
-                }}</span>
-                <span class="subtitle-card push-bottom">{{
-                  'bookTable.bookingSubtitle' | translate
-                }}</span>
-              </div>
-              <div layout="column" flex>
-                <input
-                  placeholder="{{'formFields.dateTime' | translate}}"
-                  formControlName="bookingDate"
-                  [min]="minDate"
-                  [owlDateTimeTrigger]="booking1"
-                  [owlDateTime]="booking1"
-                />
-                <owl-date-time
-                  [pickerMode]="'dialog'"
-                  [firstDayOfWeek]="getFirstDayWeek()"
-                  #booking1
-                ></owl-date-time>
+                <ion-item>
+                  <ion-label
+                    floating
+                    [class.input-label]="!name.touched"
+                    [class.invalid]="
+                      name.invalid && (name.dirty || name.touched)
+                    "
+                    [class.valid]="name.valid"
+                    >{{ 'formFields.name' | translate }}</ion-label
+                  >
+                  <ion-input formControlName="name"></ion-input>
+                </ion-item>
+                <div
+                  [@itemState]="in"
+                  class="input-error"
+                  *ngIf="
+                    name.invalid &&
+                    (name.dirty || name.touched) &&
+                    name.errors.required
+                  "
+                >
+                  {{ 'bookTable.formErrors.nameRequired' | translate }}
+                </div>
 
-                <ion-input
-                  placeholder="{{'formFields.name' | translate}}"
-                  formControlName="name"
-                ></ion-input>
-                <!--
-                  <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
-                                             <div *ngIf="name.errors.required">
-                                                 {{'bookTable.formErrors.nameRequired' | translate}}
-                                             </div>
-                                         </mat-error>
-                -->
+                <ion-item>
+                  <ion-label
+                    floating
+                    [class.input-label]="!email.touched"
+                    [class.invalid]="
+                      email.invalid && (email.dirty || email.touched)
+                    "
+                    [class.valid]="email.valid"
+                    >{{ 'formFields.email' | translate }}</ion-label
+                  >
+                  <ion-input formControlName="email"></ion-input>
+                </ion-item>
+                <div
+                  [@itemState]="in"
+                  class="input-error"
+                  *ngIf="email.invalid && (email.dirty || email.touched)"
+                >
+                  <div *ngIf="email.errors.required">
+                    {{ 'bookTable.formErrors.emailRequired' | translate }}
+                  </div>
+                  <div *ngIf="email.errors.pattern">
+                    {{ 'bookTable.formErrors.emailPattern' | translate }}
+                  </div>
+                </div>
 
-                <ion-input
-                  placeholder="{{'formFields.email' | translate}}"
-                  formControlName="email"
-                ></ion-input>
-                <!--
-                  <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
-                                             <div *ngIf="email.errors.required">
-                                                 {{'bookTable.formErrors.emailRequired' | translate}}
-                                             </div>
-                                             <div *ngIf="email.errors.pattern">
-                                                 {{'bookTable.formErrors.emailPattern' | translate}}
-                                             </div>
-                                         </mat-error>
-                -->
+                <ion-item>
+                  <ion-label
+                    floating
+                    [class.input-label]="!assistants.touched"
+                    [class.invalid]="
+                      assistants.invalid &&
+                      (assistants.dirty || assistants.touched)
+                    "
+                    [class.valid]="assistants.valid"
+                    >{{ 'formFields.assistants' | translate }}</ion-label
+                  >
+                  <ion-input
+                    formControlName="assistants"
+                    type="number"
+                  ></ion-input>
+                </ion-item>
+                <div
+                  [@itemState]="in"
+                  class="input-error"
+                  *ngIf="
+                    assistants.invalid &&
+                    (assistants.dirty || assistants.touched)
+                  "
+                >
+                  <div *ngIf="assistants.errors.required">
+                    {{ 'bookTable.formErrors.assistantsRequired' | translate }}
+                  </div>
+                  <div *ngIf="assistants.errors.max">
+                    {{ 'bookTable.formErrors.assistantsMax' | translate }}
+                  </div>
+                  <div *ngIf="assistants.errors.min">
+                    {{ 'bookTable.formErrors.assistantsMin' | translate }}
+                  </div>
+                </div>
 
-                <ion-input
-                  placeholder="{{'formFields.assistants' | translate}}"
-                  formControlName="assistants"
-                  type="number"
-                ></ion-input>
-                <!--
-                  <mat-error *ngIf="assistants.invalid && (assistants.dirty || assistants.touched)">
-                                           <div *ngIf="assistants.errors.required">
-                                               {{'bookTable.formErrors.assistantsRequired' | translate}}
-                                           </div>
-                                           <div *ngIf="assistants.errors.max">
-                                               {{'bookTable.formErrors.assistantsMax' | translate}}
-                                           </div>
-                                           <div *ngIf="assistants.errors.min">
-                                               {{'bookTable.formErrors.assistantsMin' | translate}}
-                                           </div>
-                                       </mat-error>
-                -->
-
-                <ion-checkbox class="inlineElement" #termsd></ion-checkbox>
-                <ion-label class="inlineElement">{{
-                  'formFields.terms' | translate
-                }}</ion-label>
+                <ion-item>
+                  <ion-checkbox color="secondary" #termsd></ion-checkbox>
+                  <ion-label>{{ 'formFields.terms' | translate }}</ion-label>
+                </ion-item>
 
                 <div class="align-right">
                   <button
-                    mat-button
+                    ion-button
                     type="button"
                     (click)="showBookTablePopover(termsd)"
                     [disabled]="!(bookForm.valid && termsd.checked)"
-                    color="accent"
-                    class="text-upper"
+                    class="text-upper button-form-submit"
                   >
                     {{ 'buttons.bookTable' | translate }}
                   </button>
@@ -123,22 +186,50 @@
             <img src="./assets/images/slider-2.jpg" />
           </ion-col>
 
-          <ion-col col-12 col-sm>
+          <ion-col col-12 col-sm class="pad">
+            <div class="title-card property-text-bold text-upper">
+              {{ 'bookTable.reservationTitle' | translate }}
+            </div>
+            <span (click)="this.invDateTouched = true">
+              <ion-item>
+                <ion-label
+                  floating
+                  [class.input-label]="!invDateTouched"
+                  [class.invalid]="
+                    !isDate(this.invitationForm.get('bookingDate').value) &&
+                    invDateTouched
+                  "
+                  [class.valid]="
+                    isDate(this.invitationForm.get('bookingDate').value)
+                  "
+                  >{{ 'formFields.dateTime' | translate }}</ion-label
+                >
+                <ion-input
+                  [(ngModel)]="invDate"
+                  (input)="changeDate('inv', $event.target.value)"
+                >
+                </ion-input>
+                <button
+                  ion-button
+                  icon-only
+                  item-end
+                  [owlDateTimeTrigger]="booking2"
+                  style="align-self: flex-end"
+                >
+                  <ion-icon name="calendar"></ion-icon>
+                </button>
+              </ion-item>
+            </span>
             <form
-              class="pad"
               [formGroup]="invitationForm"
               (keydown.enter)="$event.preventDefault()"
             >
-              <div class="title-card property-text-bold text-upper">
-                {{ 'bookTable.reservationTitle' | translate }}
-              </div>
-
               <input
-                placeholder="{{'formFields.dateTime' | translate}}"
-                formControlName="bookingDate"
+                style="display:none;"
                 [min]="minDate"
-                [owlDateTimeTrigger]="booking2"
                 [owlDateTime]="booking2"
+                formControlName="bookingDate"
+                (dateTimeChange)="setDate('inv', invDate)"
               />
               <owl-date-time
                 [pickerMode]="'dialog'"
@@ -146,48 +237,78 @@
                 #booking2
               ></owl-date-time>
 
-              <ion-input
-                placeholder="{{'formFields.name' | translate}}"
-                formControlName="name"
-              ></ion-input>
-              <!--
-                <mat-error *ngIf="invName.invalid && (invName.dirty || invName.touched)">
-                    <div *ngIf="invName.errors.required">
-                        {{'bookTable.formErrors.nameRequired' | translate}}
-                    </div>
-                </mat-error>
-              -->
+              <ion-item>
+                <ion-label
+                  floating
+                  [class.input-label]="!invName.touched"
+                  [class.invalid]="
+                    invName.invalid && (invName.dirty || invName.touched)
+                  "
+                  [class.valid]="invName.valid"
+                  >{{ 'formFields.name' | translate }}</ion-label
+                >
+                <ion-input formControlName="name"></ion-input>
+              </ion-item>
+              <div
+                [@itemState]="in"
+                class="input-error"
+                *ngIf="
+                  invName.invalid &&
+                  (invName.dirty || invName.touched) &&
+                  invName.errors.required
+                "
+              >
+                {{ 'bookTable.formErrors.nameRequired' | translate }}
+              </div>
 
-              <ion-input
-                placeholder="{{'formFields.email' |  translate}}"
-                formControlName="email"
-              ></ion-input>
-              <!--
-                <mat-error *ngIf="invEmail.invalid && (invEmail.dirty || invEmail.touched)">
-                    <div *ngIf="invEmail.errors.required">
-                        {{'bookTable.formErrors.emailRequired' | translate}}
-                    </div>
-                    <div *ngIf="invEmail.errors.pattern">
-                        {{'bookTable.formErrors.emailPattern' | translate}}
-                    </div>
-                </mat-error>
-              -->
-
-              <h4>{{ 'formFields.guests' | translate }}</h4>
+              <ion-item>
+                <ion-label
+                  floating
+                  [class.input-label]="!invEmail.touched"
+                  [class.invalid]="
+                    invEmail.invalid && (invEmail.dirty || invEmail.touched)
+                  "
+                  [class.valid]="invEmail.valid"
+                  >{{ 'formFields.email' | translate }}</ion-label
+                >
+                <ion-input formControlName="email"></ion-input>
+              </ion-item>
+              <div
+                [@itemState]="in"
+                class="input-error"
+                *ngIf="invEmail.invalid && (invEmail.dirty || invEmail.touched)"
+              >
+                <div *ngIf="invEmail.errors.required">
+                  {{ 'bookTable.formErrors.emailRequired' | translate }}
+                </div>
+                <div *ngIf="invEmail.errors.pattern">
+                  {{ 'bookTable.formErrors.emailPattern' | translate }}
+                </div>
+              </div>
+              <h4 style="margin: 20px 0px; padding-left:16px;">
+                {{ 'formFields.guests' | translate }}
+              </h4>
               <div #emailChipContainer></div>
-              <ion-input
-                #emailInput
-                class="pad-bottom-sm"
-                formControlName="invitedGuests"
-                name="invitedGuests"
-                (keydown.enter)="addEmail(emailInput.value)"
-                placeholder="{{'formFields.guestsPH' | translate}}"
-              ></ion-input>
-
-              <ion-checkbox #termsi class="inlineElement"></ion-checkbox>
-              <ion-label class="inlineElement">{{
-                'formFields.terms' | translate
-              }}</ion-label>
+              <ion-item>
+                <ion-input
+                  #emailInput
+                  class="pad-bottom-sm"
+                  (keydown.enter)="addEmail(emailInput.value)"
+                  placeholder="{{'formFields.guestsPH' | translate}}"
+                ></ion-input>
+                <button
+                  ion-button
+                  item-end
+                  icon-only
+                  (click)="addEmail(emailInput.value)"
+                >
+                  <ion-icon name="add" color="secondary"></ion-icon>
+                </button>
+              </ion-item>
+              <ion-item>
+                <ion-checkbox #termsi color="secondary"></ion-checkbox>
+                <ion-label>{{ 'formFields.terms' | translate }}</ion-label>
+              </ion-item>
               <div
                 class="
                                 align-right"
@@ -195,7 +316,7 @@
                 <button
                   ion-button
                   type="button"
-                  (click)="showInviteDialog(termsi)"
+                  (click)="showInvitePopover(termsi)"
                   [disabled]="
                     !(
                       invitationForm.valid &&
@@ -203,8 +324,7 @@
                       termsi.checked
                     )
                   "
-                  color="accent"
-                  class="text-upper"
+                  class="text-upper button-form-submit"
                 >
                   {{ 'buttons.inviteFriends' | translate }}
                 </button>

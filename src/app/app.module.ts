@@ -9,8 +9,8 @@ import { BookTablePageModule } from '../pages/book-table/book-table.module';
 import { MenuPageModule } from '../pages/menu/menu.module';
 import { ComponentsModule } from '../components/components.module';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 import { AuthGuardProvider } from '../providers/auth-guard/auth-guard';
 import { AuthProvider } from '../providers/auth/auth';

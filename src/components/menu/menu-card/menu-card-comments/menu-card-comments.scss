@@ -1,10 +1,17 @@
 menu-card-comments {
-  :host {
+  .item {
     background-color: rgba(0, 0, 0, 0.3) !important;
+    max-height: 50% !important;
+    min-height: 50% !important;
   }
 
-  .item {
-    background-color: transparent !important;
+  ion-avatar {
+    max-height: 100% !important;
+    min-height: 100% !important;
+  }
+
+  .grid {
+    max-height: 100% !important;
   }
 
   .twitter-title {
