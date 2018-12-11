@@ -72,6 +72,7 @@
 }
 
 .input-error {
+  z-index: -1;
   font-size: 12px;
   padding: 0px 0px 0px 16px;
   color: color($colors, warn, base);
