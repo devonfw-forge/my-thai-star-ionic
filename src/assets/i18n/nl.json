@@ -21,8 +21,7 @@
   },
   "alerts": {
     "accessError": "Geen toegang. U dient in te loggen",
-    "genericError":
-      "Er heeft zich een fout voorgedaan. Probeer het later nog een keer",
+    "genericError": "Er heeft zich een fout voorgedaan. Probeer het later nog een keer",
     "urlError": "Url niet gevonden, probeer het nog een keer",
     "email confirmations": {
       "invitationAccept": "Uitnodiging geaccepteerd",
@@ -30,8 +29,7 @@
       "bookingCancel": "Boeking geannuleerd",
       "orderCancel": "Bestelling geannuleerd"
     },
-    "orderID":
-      "Om een menu te bestellen is een bestellingsnummer nodig. U kunt een bestaand bestellingsnummer invoeren of een tafel boeken",
+    "orderID": "Om een menu te bestellen is een bestellingsnummer nodig. U kunt een bestaand bestellingsnummer invoeren of een tafel boeken",
     "passwordError": "Wachtwoorden niet gelijk",
     "authAlerts": {
       "loginSuccess": "Inloggen geslaagd",
@@ -58,8 +56,7 @@
     "referenceNumber": "Referentienummer"
   },
   "bookTable": {
-    "title":
-      "Je kunt jouw vrienden uitnodigen voor een lunch of een tafel boeken",
+    "title": "Je kunt jouw vrienden uitnodigen voor een lunch of een tafel boeken",
     "bookingTab": "Boek een tafel",
     "reservationTab": "Nodig vrienden uit",
     "bookingTitle": "Boek jouw tafel",
@@ -72,16 +69,12 @@
     },
     "formErrors": {
       "nameRequired": "Verplicht. Voer een naam in om een tafel te reserveren",
-      "emailRequired":
-        "Verplicht. Voer een email adres in om een tafel te reserveren",
-      "emailPattern":
-        "Voer een gelding email adres in waar de reserveer gegevens toe te verzenden. Zoals email@email.com",
+      "emailRequired": "Verplicht. Voer een email adres in om een tafel te reserveren",
+      "emailPattern": "Voer een gelding email adres in waar de reserveer gegevens toe te verzenden. Zoals email@email.com",
       "emailFormat": "Email adres is niet gelding",
       "assistantsRequired": "Verplicht. Voer het aantal tafelgasten in",
-      "assistantsMax":
-        "Er kan niet voor meer tafelgasten worden gereserveerd dan de grootte van de grootste tafel (8). Indien meer tafels nodig zijn, doe dan verschillende boekingen.",
-      "assistantsMin":
-        "Er kan niet 0 of een negatief nummer van assistenten worden gebekt."
+      "assistantsMax": "Er kan niet voor meer tafelgasten worden gereserveerd dan de grootte van de grootste tafel (8). Indien meer tafels nodig zijn, doe dan verschillende boekingen.",
+      "assistantsMin": "Er kan niet 0 of een negatief nummer van assistenten worden gebekt."
     }
   },
   "main": {
@@ -102,11 +95,9 @@
   "home": {
     "subtitle": "Meer dan heerlijk eten alleen",
     "restaurantTitle": "Ons restaurant",
-    "restaurantContent":
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum tellus eget volutpat porta. Duis pellentesque velit venenatis, tincidunt ligula ac, rhoncus felis. Donec aliquam nulla id turpis dignissim laoreet. Vestibulum sit amet ante eu lacus convallis lobortis sit amet eu orci. Nam vitae felis ac nisi accumsan faucibus.",
+    "restaurantContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum tellus eget volutpat porta. Duis pellentesque velit venenatis, tincidunt ligula ac, rhoncus felis. Donec aliquam nulla id turpis dignissim laoreet. Vestibulum sit amet ante eu lacus convallis lobortis sit amet eu orci. Nam vitae felis ac nisi accumsan faucibus.",
     "menuTitle": "Our menu",
-    "menuContent":
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum tellus eget volutpat porta. Duis pellentesque velit venenatis, tincidunt ligula ac, rhoncus felis. Donec aliquam nulla id turpis dignissim laoreet. Vestibulum sit amet ante eu lacus convallis lobortis sit amet eu orci. Nam vitae felis ac nisi accumsan faucibus."
+    "menuContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum tellus eget volutpat porta. Duis pellentesque velit venenatis, tincidunt ligula ac, rhoncus felis. Donec aliquam nulla id turpis dignissim laoreet. Vestibulum sit amet ante eu lacus convallis lobortis sit amet eu orci. Nam vitae felis ac nisi accumsan faucibus."
   },
   "menu": {
     "filterTitle": "FILTERS",
@@ -134,8 +125,7 @@
     "noSelection": "Er is geen bestelling geselecteerd",
     "dialog": {
       "title": "Voeg commentaar toe",
-      "content":
-        "Hier kan een kort commentaaar worden gegeven aan onze koks over hoe het bestelde menu voor te bereiden"
+      "content": "Hier kan een kort commentaaar worden gegeven aan onze koks over hoe het bestelde menu voor te bereiden"
     }
   },
   "userArea": {
@@ -152,7 +142,7 @@
       "title": "Koppel twitter account",
       "twitterUsernamePH": "Twitter gebruikersnaam",
       "twitterPasswordPH": "Twitter wachtwoord",
-      "loginbutton": "Inloggen Twitter"
+      "loginButton": "Inloggen Twitter"
     }
   },
   "cockpit": {

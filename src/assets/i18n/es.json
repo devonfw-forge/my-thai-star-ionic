@@ -142,7 +142,7 @@
       "title": "Asociar cuenta de Twitter",
       "twitterUsernamePH": "Usuario de Twitter",
       "twitterPasswordPH": "Contraseña de Twitter",
-      "loginbutton": "Acceder a Twitter"
+      "loginButton": "Acceder a Twitter"
     }
   },
   "cockpit": {

@@ -142,7 +142,7 @@
             "title": "Связать Аккаунт Твиттер",
             "twitterUsernamePH": "Имя пользователя в Твиттере",
             "twitterPasswordPH": "Пароль в Твиттере",
-            "loginbutton": "Войти в Твиттер"
+            "loginButton": "Войти в Твиттер"
         }
     },
     "cockpit": {
