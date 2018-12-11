@@ -105,6 +105,17 @@
               validateEmail
             ></ion-input>
           </ion-item>
+          <div
+            [@itemState]="in"
+            class="input-error"
+            *ngIf="
+              email.invalid &&
+              (email.dirty || email.touched) &&
+              !email.errors.required
+            "
+          >
+            {{ 'userArea.emailError' | translate }}
+          </div>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -152,6 +163,17 @@
               #password2="ngModel"
             ></ion-input>
           </ion-item>
+          <div
+            [@itemState]="in"
+            class="input-error"
+            *ngIf="
+              password2.invalid &&
+              (password2.dirty || password2.touched) &&
+              !password2.errors.required
+            "
+          >
+            {{ 'alerts.passwordError' | translate }}
+          </div>
         </ion-col>
       </ion-row>
 

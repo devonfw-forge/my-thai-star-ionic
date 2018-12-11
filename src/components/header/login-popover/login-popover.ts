@@ -2,10 +2,29 @@ import { Component } from '@angular/core';
 import { ViewController } from 'ionic-angular';
 import { FormGroup } from '@angular/forms';
 import { UserAreaProvider } from '../../../providers/user-area/user-area';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
 
 @Component({
   selector: 'login-popover',
   templateUrl: 'login-popover.html',
+  animations: [
+    trigger('itemState', [
+      state('in', style({ transform: 'translateY(0)' })),
+      //Enter
+      transition('void => *', [
+        style({
+          transform: 'translateY(-100%)',
+        }),
+        animate('300ms linear'),
+      ]),
+    ]),
+  ],
 })
 export class LoginPopoverComponent {
   tab: string;

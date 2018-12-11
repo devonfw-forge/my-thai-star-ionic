@@ -2,16 +2,29 @@ import { Component } from '@angular/core';
 import { ViewController } from 'ionic-angular';
 import { UserAreaProvider } from '../../../providers/user-area/user-area';
 import { FormGroup } from '@angular/forms';
+import {
+  trigger,
+  style,
+  state,
+  transition,
+  animate,
+} from '@angular/animations';
 
-/**
- * Generated class for the ChangePasswordPopoverComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'change-password-popover',
   templateUrl: 'change-password-popover.html',
+  animations: [
+    trigger('itemState', [
+      state('in', style({ transform: 'translateY(0)' })),
+      //Enter
+      transition('void => *', [
+        style({
+          transform: 'translateY(-100%)',
+        }),
+        animate('300ms linear'),
+      ]),
+    ]),
+  ],
 })
 export class ChangePasswordPopoverComponent {
   constructor(
