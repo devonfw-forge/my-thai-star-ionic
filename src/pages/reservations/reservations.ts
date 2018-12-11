@@ -57,8 +57,8 @@ export class ReservationsPage {
   ngOnInit(): void {
     this.setTableHeaders();
     this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
-      this.setTableHeaders();
       moment.locale(this.translate.currentLang);
+      this.setTableHeaders();
     });
     this.applyFilters();
   }
@@ -66,9 +66,21 @@ export class ReservationsPage {
   setTableHeaders(): void {
     this.translate.get('cockpit.table').subscribe((res: any) => {
       this.columns = [
-        { name: 'booking.bookingDate', label: res.reservationDateH },
-        { name: 'booking.email', label: res.emailH },
-        { name: 'booking.bookingToken', label: res.bookingTokenH },
+        {
+          name: 'booking.bookingDate',
+          label: res.reservationDateH,
+          width: { min: Math.max(90, 24 + res.reservationDateH.length * 8) },
+        },
+        {
+          name: 'booking.email',
+          label: res.emailH,
+          width: { min: Math.max(150, 56 + res.emailH.length * 8) },
+        },
+        {
+          name: 'booking.bookingToken',
+          label: res.bookingTokenH,
+          width: { min: Math.max(230, 56 + res.bookingTokenH.length * 8) },
+        },
       ];
     });
   }

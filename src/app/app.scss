@@ -8,9 +8,16 @@
 }
 
 .td-data-table-cell-content-wrapper {
+  padding: 0px 0px 0px 28px !important;
   .ng-star-inserted {
-    max-width: 100%;
+    min-width: 100%;
   }
+}
+
+[_nghost-c18]:first-child
+  > .td-data-table-cell-content-wrapper[_ngcontent-c18] {
+  padding-left: 24px !important;
+  padding-right: initial !important;
 }
 
 .toast-red {

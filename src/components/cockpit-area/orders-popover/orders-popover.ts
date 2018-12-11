@@ -58,25 +58,62 @@ export class OrdersPopoverComponent implements OnInit {
   setTableHeaders(): void {
     this.translate.get('cockpit.table').subscribe((res: any) => {
       this.columnst = [
-        { name: 'bookingDate', label: res.reservationDateH },
-        { name: 'creationDate', label: res.creationDateH },
-        { name: 'name', label: res.ownerH },
-        { name: 'email', label: res.emailH },
-        { name: 'tableId', label: res.tableH },
+        {
+          name: 'bookingDate',
+          label: res.reservationDateH,
+          width: { min: Math.max(90, 24 + res.reservationDateH.length * 8) },
+        },
+        {
+          name: 'creationDate',
+          label: res.creationDateH,
+          width: { min: Math.max(90, 24 + res.creationDateH.length * 8) },
+        },
+        {
+          name: 'name',
+          label: res.ownerH,
+          width: { min: Math.max(90, 56 + res.ownerH.length * 8) },
+        },
+        {
+          name: 'email',
+          label: res.emailH,
+          width: { min: Math.max(150, 56 + res.emailH.length * 8) },
+        },
+        {
+          name: 'tableId',
+          label: res.tableH,
+          width: { min: Math.max(80, 56 + res.tableH.length * 8) },
+        },
       ];
     });
 
     this.translate.get('cockpit.orders.dialogTable').subscribe((res: any) => {
       this.columnso = [
-        { name: 'dish.name', label: res.dishH },
-        { name: 'orderLine.comment', label: res.commentsH },
-        { name: 'extras', label: res.extrasH },
-        { name: 'orderLine.amount', label: res.quantityH },
+        {
+          name: 'dish.name',
+          label: res.dishH,
+          width: { min: Math.max(160, 24 + res.dishH.length * 8) },
+        },
+        {
+          name: 'orderLine.comment',
+          label: res.commentsH,
+          width: { min: 56 + res.commentsH.length * 8 },
+        },
+        {
+          name: 'extras',
+          label: res.extrasH,
+          width: { min: 56 + res.extrasH.length * 8 },
+        },
+        {
+          name: 'orderLine.amount',
+          label: res.quantityH,
+          width: { min: Math.max(80, 56 + res.quantityH.length * 8) },
+        },
         {
           name: 'dish.price',
           label: res.priceH,
           numeric: true,
           format: (v: number) => v.toFixed(2),
+          width: { min: Math.max(90, 56 + res.priceH.length * 8) },
         },
       ];
     });

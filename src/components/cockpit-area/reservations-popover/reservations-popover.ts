@@ -55,11 +55,31 @@ export class ReservationsPopoverComponent implements OnInit {
   setTableHeaders(): void {
     this.translate.get('cockpit.table').subscribe((res: any) => {
       this.columnst = [
-        { name: 'booking.bookingDate', label: res.reservationDateH },
-        { name: 'booking.creationDate', label: res.creationDateH },
-        { name: 'booking.name', label: res.ownerH },
-        { name: 'booking.email', label: res.emailH },
-        { name: 'booking.tableId', label: res.tableH },
+        {
+          name: 'booking.bookingDate',
+          label: res.reservationDateH,
+          width: { min: Math.max(90, 24 + res.reservationDateH.length * 8) },
+        },
+        {
+          name: 'booking.creationDate',
+          label: res.creationDateH,
+          width: { min: Math.max(90, 24 + res.creationDateH.length * 8) },
+        },
+        {
+          name: 'booking.name',
+          label: res.ownerH,
+          width: { min: Math.max(90, 56 + res.ownerH.length * 8) },
+        },
+        {
+          name: 'booking.email',
+          label: res.emailH,
+          width: { min: Math.max(150, 56 + res.emailH.length * 8) },
+        },
+        {
+          name: 'booking.tableId',
+          label: res.tableH,
+          width: { min: Math.max(80, 56 + res.tableH.length * 8) },
+        },
       ];
     });
 
@@ -67,14 +87,25 @@ export class ReservationsPopoverComponent implements OnInit {
       .get('cockpit.reservations.dialogTable')
       .subscribe((res: any) => {
         this.columnso = [
-          { name: 'email', label: res.guestEmailH },
-          { name: 'accepted', label: res.acceptanceH },
+          {
+            name: 'email',
+            label: res.guestEmailH,
+            width: { min: Math.max(110, 24 + res.guestEmailH.length * 8) },
+          },
+          {
+            name: 'accepted',
+            label: res.acceptanceH,
+            width: { min: Math.max(80, 56 + res.acceptanceH.length * 8) },
+          },
         ];
 
         if (this.data.booking.assistants) {
           this.columnst.push({
             name: 'booking.assistants',
             label: res.assistantsH,
+            width: {
+              min: Math.max(80, 56 + res.assistantsH.length * 8),
+            },
           });
         }
       });
