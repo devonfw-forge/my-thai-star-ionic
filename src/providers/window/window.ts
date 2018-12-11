@@ -11,6 +11,6 @@ export class WindowProvider {
   }
 
   responsiveWidth(): string {
-    return getWindow().innerWidth > 800 ? '40%' : '80%';
+    return getWindow().innerWidth > 800 ? 'popover40' : 'popover80';
   }
 }

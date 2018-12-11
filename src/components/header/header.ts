@@ -62,12 +62,20 @@ export class HeaderComponent {
   }
 
   openLoginPopover(): void {
-    let popover = this.popoverCtrl.create(LoginPopoverComponent);
+    let popover = this.popoverCtrl.create(
+      LoginPopoverComponent,
+      {},
+      { cssClass: this.window.responsiveWidth() },
+    );
     popover.present();
   }
 
   openAccountPopover(event): void {
-    let popover = this.popoverCtrl.create(AccountPopoverComponent);
+    let popover = this.popoverCtrl.create(
+      AccountPopoverComponent,
+      {},
+      { cssClass: this.window.responsiveWidth() },
+    );
     popover.present({ ev: event });
   }
 

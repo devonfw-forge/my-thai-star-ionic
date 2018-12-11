@@ -150,10 +150,13 @@ export class BookTablePage implements OnInit {
   }
 
   showBookTablePopover(checkbox: Checkbox): void {
-    let bookTablePopover = this.popoverCtrl.create(BookTablePopoverComponent, {
-      width: this.window.responsiveWidth(),
-      data: this.bookForm.value,
-    });
+    let bookTablePopover = this.popoverCtrl.create(
+      BookTablePopoverComponent,
+      {
+        data: this.bookForm.value,
+      },
+      { cssClass: this.window.responsiveWidth() },
+    );
     bookTablePopover.onDidDismiss((res: boolean) => {
       if (res) {
         this.bookForm.reset();
@@ -167,9 +170,9 @@ export class BookTablePage implements OnInit {
     let invitationPopover = this.popoverCtrl.create(
       InvitationPopoverComponent,
       {
-        width: this.window.responsiveWidth(),
         data: this.invitationForm.value,
       },
+      { cssClass: this.window.responsiveWidth() },
     );
     invitationPopover.onDidDismiss((res: boolean) => {
       if (res) {
