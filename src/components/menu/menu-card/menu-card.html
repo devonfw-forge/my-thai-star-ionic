@@ -5,12 +5,12 @@
   >
     <button
       ion-fab
-      *ngIf="auth.isLogged()"
+      *ngIf="!auth.isLogged()"
       (click)="changeFavouriteState()"
       class="favourite-button"
     >
       <ion-icon
-        name="start"
+        name="star"
         [class.fab-on]="!menuInfo.isfav"
         [class.fab-off]="menuInfo.isfav"
       >
