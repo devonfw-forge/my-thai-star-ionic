@@ -123,10 +123,13 @@ export class OrdersPage implements OnInit {
 
   selected(selection: ITdDataTableSelectAllEvent): void {
     this.popoverCtrl
-      .create(OrdersPopoverComponent, {
-        width: '80%',
-        data: selection,
-      })
+      .create(
+        OrdersPopoverComponent,
+        {
+          data: selection,
+        },
+        { cssClass: 'popover80' },
+      )
       .present();
   }
 

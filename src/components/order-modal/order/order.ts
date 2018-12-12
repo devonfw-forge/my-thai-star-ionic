@@ -30,7 +30,7 @@ export class OrderComponent implements OnInit {
   }
 
   addComment(): void {
-    let popover = this.popoverController.create(CommentPopoverComponent);
+    let popover = this.popoverController.create(CommentPopoverComponent,{},{cssClass:'popover80'});
     popover.onDidDismiss((result: string) => {
       if (!!result) this.order.orderLine.comment = result;
     });

@@ -129,10 +129,13 @@ export class ReservationsPage {
 
   selected(selection: ITdDataTableSelectAllEvent): void {
     this.popoverCtrl
-      .create(ReservationsPopoverComponent, {
-        width: '80%',
-        data: selection,
-      })
+      .create(
+        ReservationsPopoverComponent,
+        {
+          data: selection,
+        },
+        { cssClass: 'popover80' },
+      )
       .present();
   }
 }
