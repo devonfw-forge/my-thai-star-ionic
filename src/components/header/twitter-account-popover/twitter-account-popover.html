@@ -5,7 +5,13 @@
     #twitterForm="ngForm"
   >
     <ion-row>
-      <ion-item>
+      <ion-item
+        [ngClass]="{
+          'ng-valid': username.valid,
+          'ng-invalid': username.invalid,
+          'ng-touched': username.touched
+        }"
+      >
         <ion-label
           floating
           [class.invalid]="
@@ -27,7 +33,13 @@
     </ion-row>
 
     <ion-row>
-      <ion-item>
+      <ion-item
+        [ngClass]="{
+          'ng-valid': password.valid,
+          'ng-invalid': password.invalid,
+          'ng-touched': password.touched
+        }"
+      >
         <ion-label
           floating
           [class.invalid]="

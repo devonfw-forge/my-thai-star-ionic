@@ -30,7 +30,7 @@
               }}</span>
             </div>
             <span (click)="this.resDateTouched = true">
-              <ion-item>
+              <ion-item >
                 <ion-label
                   floating
                   [class.input-label]="!resDateTouched"
@@ -74,7 +74,11 @@
                 #booking1
               ></owl-date-time>
               <div layout="column" flex>
-                <ion-item>
+                <ion-item  [ngClass]="{
+            'ng-valid': name.valid,
+            'ng-invalid': name.invalid,
+            'ng-touched': name.touched
+          }">
                   <ion-label
                     floating
                     [class.input-label]="!name.touched"
@@ -98,7 +102,11 @@
                   {{ 'bookTable.formErrors.nameRequired' | translate }}
                 </div>
 
-                <ion-item>
+                <ion-item [ngClass]="{
+            'ng-valid': email.valid,
+            'ng-invalid': email.invalid,
+            'ng-touched': email.touched
+          }">
                   <ion-label
                     floating
                     [class.input-label]="!email.touched"
@@ -123,7 +131,11 @@
                   </div>
                 </div>
 
-                <ion-item>
+                <ion-item [ngClass]="{
+            'ng-valid': assistants.valid,
+            'ng-invalid': assistants.invalid,
+            'ng-touched': assistants.touched
+          }">
                   <ion-label
                     floating
                     [class.input-label]="!assistants.touched"
@@ -237,7 +249,11 @@
                 #booking2
               ></owl-date-time>
 
-              <ion-item>
+              <ion-item [ngClass]="{
+            'ng-valid': invName.valid,
+            'ng-invalid': invName.invalid,
+            'ng-touched': invName.touched
+          }">
                 <ion-label
                   floating
                   [class.input-label]="!invName.touched"
@@ -261,7 +277,11 @@
                 {{ 'bookTable.formErrors.nameRequired' | translate }}
               </div>
 
-              <ion-item>
+              <ion-item [ngClass]="{
+            'ng-valid': invEmail.valid,
+            'ng-invalid': invEmail.invalid,
+            'ng-touched': invEmail.touched
+          }">
                 <ion-label
                   floating
                   [class.input-label]="!invEmail.touched"
