@@ -128,38 +128,36 @@
       </ion-row>
 
       <ion-row>
-        <ion-col col-12>
-          <ion-item>
-            <ion-label
-              floating
-              [class.invalid]="
-                password2.invalid && (password2.dirty || password2.touched)
-              "
-              [class.valid]="password2.valid"
-              >{{ 'formFields.confirmPassword' | translate }} *</ion-label
-            >
-            <ion-input
-              name="password2"
-              type="password"
-              ngModel
-              required
-              validateEqual="password1"
-              reverse="false"
-              #password2="ngModel"
-            ></ion-input>
-          </ion-item>
-          <div
-            [@itemState]="in"
-            class="input-error"
-            *ngIf="
-              password2.invalid &&
-              (password2.dirty || password2.touched) &&
-              !password2.errors.required
+        <ion-item>
+          <ion-label
+            floating
+            [class.invalid]="
+              password2.invalid && (password2.dirty || password2.touched)
             "
+            [class.valid]="password2.valid"
+            >{{ 'formFields.confirmPassword' | translate }} *</ion-label
           >
-            {{ 'alerts.passwordError' | translate }}
-          </div>
-        </ion-col>
+          <ion-input
+            name="password2"
+            type="password"
+            ngModel
+            required
+            validateEqual="password1"
+            reverse="false"
+            #password2="ngModel"
+          ></ion-input>
+        </ion-item>
+        <div
+          [@itemState]="in"
+          class="input-error"
+          *ngIf="
+            password2.invalid &&
+            (password2.dirty || password2.touched) &&
+            !password2.errors.required
+          "
+        >
+          {{ 'alerts.passwordError' | translate }}
+        </div>
       </ion-row>
 
       <ion-row justify-content-end>
