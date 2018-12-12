@@ -82,7 +82,7 @@
   color: color($colors, warn, base) !important;
 }
 
-.valid {
+.input-has-focus .valid {
   color: color($colors, secondary, base) !important;
 }
 
