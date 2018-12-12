@@ -10,8 +10,8 @@ export enum SortDirection {
   DESC = 'DESC',
 }
 enum SortIcon {
-  ASC = 'arrow-up',
-  DESC = 'arrow-down',
+  ASC = 'arrow-round-up',
+  DESC = 'arrow-round-down',
 }
 
 @Component({
