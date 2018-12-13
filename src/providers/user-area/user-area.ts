@@ -3,7 +3,7 @@ import { ToastProvider } from '../toast/toast';
 import { AuthProvider } from '../auth/auth';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Events, App } from 'ionic-angular';
+import { Events } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { OrdersPage } from '../../pages/orders/orders';
 import { HomePage } from '../../pages/home/home';
@@ -22,7 +22,6 @@ export class UserAreaProvider {
     public translate: TranslateService,
     private http: HttpClient,
     public AuthProvider: AuthProvider,
-    public app: App,
   ) {
     this.translate.get('alerts.authAlerts').subscribe((result: any) => {
       this.authAlerts = result;
@@ -38,15 +37,16 @@ export class UserAreaProvider {
       )
       .subscribe(
         (res: any) => {
+          console.log(res);
           this.AuthProvider.setToken(res.headers.get('Authorization'));
           this.http
             .get(`${environment.restServiceRoot}${this.currentUserRestPath}`)
             .subscribe((loginInfo: any) => {
+              console.log(loginInfo);
               this.AuthProvider.setLogged(true);
               this.AuthProvider.setUser(loginInfo.name);
               this.AuthProvider.setRole(loginInfo.role);
               this.events.publish('navTo', OrdersPage);
-              //this.app.getRootNav().setRoot(OrdersPage);
               this.toastprovider.openToast(
                 this.authAlerts.loginSuccess,
                 4000,
