@@ -12,7 +12,8 @@
     "clearFilters": "Verwijder filters",
     "applyFilters": "Voeg filters toe",
     "removeComment": "Verwijder commentaar",
-    "addComment": "Voeg commentaar toe"
+    "addComment": "Voeg commentaar toe",
+    "save": "Opslaan"
   },
   "table": {
     "rowsPage": "Rijen per pagina",

@@ -12,7 +12,8 @@
     "clearFilters": "Netejar filtres",
     "applyFilters": "Aplicar filtres",
     "removeComment": "Eliminar comentari",
-    "addComment": "Afegir comentari"
+    "addComment": "Afegir comentari",
+    "save": "Guardar"
   },
   "table": {
     "rowsPage": "Files per pàgina",

@@ -12,7 +12,8 @@
     "clearFilters": "Wyczysc filtry",
     "applyFilters": "Zastosuj filtry",
     "removeComment": "Usun komentarz",
-    "addComment": "Dodaj komentarz"
+    "addComment": "Dodaj komentarz",
+    "save": "Zapisz"
   },
   "table": {
     "rowsPage": "Ilosc rzedów na stronie",

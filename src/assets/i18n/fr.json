@@ -12,7 +12,8 @@
     "clearFilters": "Nettoyer les filtres",
     "applyFilters": "Appliquer les filtres",
     "removeComment": "Supprimer un commentaire",
-    "addComment": "Ajouter un commentaire"
+    "addComment": "Ajouter un commentaire",
+    "save": "Enregistrer"
   },
   "table": {
     "rowsPage": "Lignes par page",

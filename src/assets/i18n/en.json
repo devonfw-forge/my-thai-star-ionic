@@ -12,7 +12,8 @@
     "clearFilters": "Clear Filters",
     "applyFilters": "Apply Filters",
     "removeComment": "Remove Comment",
-    "addComment": "Add comment"
+    "addComment": "Add comment",
+    "save": "Save"
   },
   "table": {
     "rowsPage": "Rows per page",

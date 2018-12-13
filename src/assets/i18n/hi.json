@@ -12,7 +12,8 @@
     "clearFilters": "फ़िल्टर साफ़ करें",
     "applyFilters": "फ़िल्टर लागू करें",
     "removeComment": "टिप्पणी निकालें",
-    "addComment": "टिप्पणी जोड़ें"
+    "addComment": "टिप्पणी जोड़ें",
+    "save": "सहेजें"
   },
   "table": {
     "rowsPage": "प्रति पंक्ति पंक्तियाँ",
