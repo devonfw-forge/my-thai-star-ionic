@@ -5,7 +5,7 @@
   >
     <button
       ion-fab
-      *ngIf="!auth.isLogged()"
+      *ngIf="auth.isLogged()"
       (click)="changeFavouriteState()"
       class="favourite-button"
     >
