@@ -12,7 +12,8 @@
     "clearFilters": "Изчисти филтри",
     "applyFilters": "Приложи филтри",
     "removeComment": "Изтрий коментар",
-    "addComment": "Добави коментар"
+    "addComment": "Добави коментар",
+    "save": "Запиши"
   },
   "table": {
     "rowsPage": "Редове на страница",
