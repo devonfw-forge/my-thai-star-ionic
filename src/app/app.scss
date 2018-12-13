@@ -151,5 +151,15 @@ public-main {
         width: 16px;
       }
     }
+
+    #flagList {
+      .label {
+        padding-left: 1px;
+      }
+      .flagMenuIcon {
+        margin-right: 16px;
+        box-shadow: 0 0 0 1px lightgray;
+      }
+    }
   }
 }

@@ -35,7 +35,7 @@
 
 <ion-menu side="right" [content]="content" id="languages">
   <ion-content>
-    <ion-list>
+    <ion-list id="flagList">
       <button
         menuClose="right"
         ion-item
@@ -43,10 +43,7 @@
         [disabled]="translate.currentLang === lang.value"
         (click)="changeLanguage(lang.value)"
       >
-        <span
-          class="flag-icon flag-icon-{{lang.flag}}"
-          style="margin-right:16px;"
-        ></span>
+        <span class="flag-icon flag-icon-{{lang.flag}} flagMenuIcon"></span>
         <span>{{ lang.label }}</span>
       </button>
     </ion-list>
