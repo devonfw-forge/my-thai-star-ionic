@@ -35,7 +35,9 @@
       positionV="bottom"
     >
       <ion-icon name="basket"></ion-icon>
-      <ion-badge *ngIf="order.getNumberOrders() > 0" color="warn"
+      <ion-badge
+        *ngIf="order.getNumberOrders() > 0"
+        style="background-color:#f44336;"
         ><span id="orderNumber">{{ order.getNumberOrders() }}</span></ion-badge
       >
     </button>
