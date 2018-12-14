@@ -30,7 +30,7 @@
 
 .toast-red {
   .toast-container {
-    background: color($colors, warn, base);
+    background: #f44336;
   }
 }
 
@@ -79,7 +79,7 @@
 }
 
 .invalid {
-  color: color($colors, warn, base) !important;
+  color: #f44336 !important;
 }
 
 .input-has-focus .valid {
@@ -90,7 +90,7 @@
   z-index: -1;
   font-size: 12px;
   padding: 0px 0px 0px 16px;
-  color: color($colors, warn, base);
+  color: #f44336;
 }
 
 *,
