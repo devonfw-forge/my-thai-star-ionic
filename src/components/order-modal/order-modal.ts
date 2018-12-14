@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ViewController, NavController } from 'ionic-angular';
+import { ViewController, Events } from 'ionic-angular';
 import { OrderView } from '../../viewModels/interfaces';
 import { OrderProvider } from '../../providers/order/order';
 import { ToastProvider } from '../../providers/toast/toast';
@@ -19,7 +19,7 @@ export class OrderModalComponent implements OnInit {
     private orderProvider: OrderProvider,
     private toastProvider: ToastProvider,
     private calculator: PriceCalculatorProvider,
-    private navCtrl: NavController,
+    private events: Events,
   ) {}
 
   ngOnInit(): void {
@@ -33,10 +33,12 @@ export class OrderModalComponent implements OnInit {
   navigateTo(page: string): void {
     switch (page) {
       case 'BookTablePage':
-        this.navCtrl.setRoot(BookTablePage);
+        this.viewCtrl.dismiss();
+        this.events.publish('navTo', BookTablePage);
         break;
       case 'MenuPage':
-        this.navCtrl.setRoot(MenuPage);
+        this.viewCtrl.dismiss();
+        this.events.publish('navTo', MenuPage);
         break;
     }
   }
