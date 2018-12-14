@@ -23,7 +23,8 @@
       item-end
       clear
       (click)="changeSortDir($event)"
-      tooltip="sortValue.direction"
+      tooltip="{{sortValue.direction}}"
+      positionV="bottom"
       class="button-sort greenText"
     >
       <ion-icon name="{{sortDirIcon}}"></ion-icon>
