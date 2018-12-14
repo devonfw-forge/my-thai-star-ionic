@@ -13,7 +13,7 @@
     <div class="menu-filters">
       <filter-checkboxes formControlName="categories"></filter-checkboxes>
 
-      <div class="filter-sliders">
+      <div class="filter-sliders" padding-horizontal>
         <div class="slider">
           <span>{{ 'menu.filter.price' | translate }}</span>
           <ion-range
@@ -22,6 +22,7 @@
             min="1"
             step="1"
             pin="true"
+            color="secondary"
           ></ion-range>
         </div>
         <div class="slider">
@@ -32,6 +33,7 @@
             min="0"
             step="5"
             pin="true"
+            color="secondary"
           ></ion-range>
         </div>
       </div>
