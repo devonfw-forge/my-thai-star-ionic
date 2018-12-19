@@ -37,8 +37,8 @@ import {
 
 // Default text strings for OwlDateTime
 export class DefaultIntl extends OwlDateTimeIntl {
-  cancelBtnLabel: string = '\u{2716}';
-  setBtnLabel: string = '\u{2714}';
+  cancelBtnLabel = '\u{2716}';
+  setBtnLabel = '\u{2714}';
 }
 
 @NgModule({

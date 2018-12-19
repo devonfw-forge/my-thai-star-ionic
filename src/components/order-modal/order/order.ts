@@ -12,7 +12,7 @@ import { map } from 'lodash';
 })
 export class OrderComponent implements OnInit {
   extras: string;
-  @Input('order') order: OrderView;
+  @Input() order: OrderView;
 
   constructor(
     private orderProvider: OrderProvider,
@@ -30,9 +30,9 @@ export class OrderComponent implements OnInit {
   }
 
   addComment(): void {
-    let popover = this.popoverController.create(CommentPopoverComponent,{},{cssClass:'popover80'});
+    const popover = this.popoverController.create(CommentPopoverComponent, {}, {cssClass: 'popover80'});
     popover.onDidDismiss((result: string) => {
-      if (!!result) this.order.orderLine.comment = result;
+      if (!!result) { this.order.orderLine.comment = result; }
     });
     popover.present();
   }

@@ -8,11 +8,10 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class HomeCardComponent {
   @Input()
   tile: Tile;
-  @Output('buttonClick')
-  buttonEmitter: EventEmitter<Event> = new EventEmitter<Event>();
+  @Output() buttonClick: EventEmitter<Event> = new EventEmitter<Event>();
 
   onButtonClick(event: Event): void {
-    this.buttonEmitter.emit(event);
+    this.buttonClick.emit(event);
   }
 }
 

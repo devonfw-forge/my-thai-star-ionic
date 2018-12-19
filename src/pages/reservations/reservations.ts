@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, PopoverController } from 'ionic-angular';
 import { WaiterCockpitProvider } from '../../providers/waiter-cockpit/waiter-cockpit';
 import { Pageable, FilterCockpit, Sort } from '../../backendModels/interfaces';
@@ -19,7 +19,8 @@ import { ReservationsPopoverComponent } from '../../components/cockpit-area/rese
   selector: 'page-reservations',
   templateUrl: 'reservations.html',
 })
-export class ReservationsPage {
+// tslint:disable-next-line:component-class-suffix
+export class ReservationsPage implements OnInit {
   private sorting: Sort[] = [];
 
   pageable: Pageable = {

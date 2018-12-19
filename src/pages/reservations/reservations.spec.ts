@@ -16,6 +16,7 @@ describe('ReservationCockpitComponent', () => {
   let translate: TranslateService;
   // tslint:disable-next-line:prefer-const
   let popover: PopoverController;
+  // tslint:disable-next-line:prefer-const
   let navCtrl: NavController;
 
   beforeEach(() => {

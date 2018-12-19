@@ -59,7 +59,7 @@ export class HeaderComponent {
   }
 
   openLoginPopover(): void {
-    let popover = this.popoverCtrl.create(
+    const popover = this.popoverCtrl.create(
       LoginPopoverComponent,
       {},
       { cssClass: this.window.responsiveWidth() },
@@ -68,7 +68,7 @@ export class HeaderComponent {
   }
 
   openAccountPopover(event): void {
-    let popover = this.popoverCtrl.create(
+    const popover = this.popoverCtrl.create(
       AccountPopoverComponent,
       {},
       { cssClass: this.window.responsiveWidth() },
@@ -77,7 +77,7 @@ export class HeaderComponent {
   }
 
   openOrderModal(): void {
-    let modal = this.modalCtrl.create(OrderModalComponent);
+    const modal = this.modalCtrl.create(OrderModalComponent);
     modal.present();
   }
 }

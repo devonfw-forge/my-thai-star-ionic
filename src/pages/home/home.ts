@@ -9,6 +9,7 @@ import { MenuPage } from '../menu/menu';
   templateUrl: './home.html',
   styles: ['./home.scss'],
 })
+// tslint:disable-next-line:component-class-suffix
 export class HomePage {
   tiles: HomePageTiles = {
     restaurant: {

@@ -34,7 +34,7 @@ export class OrderProvider {
   }
 
   public addOrder(order: OrderView): void {
-    let addOrder: OrderView = cloneDeep(order);
+    const addOrder: OrderView = cloneDeep(order);
     addOrder.extras = filter(
       addOrder.extras,
       (extra: ExtraView) => extra.selected,
@@ -64,7 +64,7 @@ export class OrderProvider {
   }
 
   public sendOrders(token: string): Observable<SaveOrderResponse> {
-    let orderList: OrderListInfo = {
+    const orderList: OrderListInfo = {
       booking: { bookingToken: token },
       orderLines: this.composeOrders(this.orders),
     };
@@ -76,9 +76,9 @@ export class OrderProvider {
   }
 
   composeOrders(orders: OrderView[]): OrderInfo[] {
-    let composedOrders: OrderInfo[] = [];
+    const composedOrders: OrderInfo[] = [];
     orders.forEach((order: OrderView) => {
-      let extras: any[] = [];
+      const extras: any[] = [];
       order.extras
         .filter((extra: ExtraView) => extra.selected)
         .forEach((extra: ExtraView) => extras.push({ id: extra.id }));

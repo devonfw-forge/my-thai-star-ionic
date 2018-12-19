@@ -9,6 +9,7 @@ import { AuthGuardProvider } from 'providers/auth-guard/auth-guard';
 
 describe('OrderCockpitComponent', () => {
   let component: OrdersPage;
+  // tslint:disable-next-line:prefer-const
   let http: HttpClient;
   let priceCalculator: PriceCalculatorProvider;
   let waiterCockpitProvider: WaiterCockpitProvider;
@@ -16,7 +17,9 @@ describe('OrderCockpitComponent', () => {
   let translate: TranslateService;
   // tslint:disable-next-line:prefer-const
   let popover: PopoverController;
+  // tslint:disable-next-line:prefer-const
   let authGuardProvider: AuthGuardProvider;
+  // tslint:disable-next-line:prefer-const
   let navCtrl: NavController;
 
   beforeEach(() => {

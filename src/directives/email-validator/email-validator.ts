@@ -4,7 +4,8 @@ import { Validator, AbstractControl } from '@angular/forms';
 
 // Function exported to be used in this directive and unit tests
 export function emailValidator(c: string): boolean {
-  let regExp: RegExp = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+  // tslint:disable-next-line:max-line-length
+  const regExp: RegExp = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
   return regExp.test(c);
 }
 

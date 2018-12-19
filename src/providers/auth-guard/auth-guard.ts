@@ -9,20 +9,17 @@ import { Events } from 'ionic-angular';
 export class AuthGuardProvider {
   constructor(
     public toastCtrl: ToastProvider,
-    public AuthProvider: AuthProvider,
+    public auth: AuthProvider,
     public translate: TranslateService,
     public events: Events,
   ) {}
 
   canAccessWaiter(): boolean {
-    if (
-      this.AuthProvider.isLogged() &&
-      this.AuthProvider.isPermited('WAITER')
-    ) {
+    if (this.auth.isLogged() && this.auth.isPermited('WAITER')) {
       return true;
     }
 
-    if (!this.AuthProvider.isLogged()) {
+    if (!this.auth.isLogged()) {
       this.translate.get('alerts.accessError').subscribe((text: string) => {
         this.toastCtrl.openToast(text, 4000, 'red');
       });

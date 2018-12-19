@@ -29,8 +29,7 @@ export class MenuFiltersComponent implements OnInit {
   };
   filtersForm: FormGroup;
 
-  @Output('applyForm')
-  applyFormEmitter: EventEmitter<FilterFormData> = new EventEmitter();
+  @Output() applyForm: EventEmitter<FilterFormData> = new EventEmitter();
 
   constructor(private fb: FormBuilder) {}
 
@@ -46,7 +45,7 @@ export class MenuFiltersComponent implements OnInit {
     if (event) {
       event.preventDefault();
     }
-    this.applyFormEmitter.emit(this.filtersForm.value);
+    this.applyForm.emit(this.filtersForm.value);
   }
 
   clearFilters(event: Event, form: FormGroup): void {

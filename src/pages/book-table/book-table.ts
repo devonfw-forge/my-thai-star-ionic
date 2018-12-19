@@ -35,7 +35,7 @@ import {
   animations: [
     trigger('itemState', [
       state('in', style({ transform: 'translateY(0)' })),
-      //Enter
+      // Enter
       transition('void => *', [
         style({
           transform: 'translateY(-100%)',
@@ -45,6 +45,7 @@ import {
     ]),
   ],
 })
+// tslint:disable-next-line:component-class-suffix
 export class BookTablePage implements OnInit {
   @ViewChild('emailChipContainer', { read: ViewContainerRef })
   emailChipContainer: ViewContainerRef;
@@ -148,7 +149,7 @@ export class BookTablePage implements OnInit {
   }
 
   showBookTablePopover(checkbox: Checkbox): void {
-    let bookTablePopover = this.popoverCtrl.create(
+    const bookTablePopover = this.popoverCtrl.create(
       BookTablePopoverComponent,
       {
         data: this.bookForm.value,
@@ -165,7 +166,7 @@ export class BookTablePage implements OnInit {
   }
 
   showInvitePopover(checkbox: Checkbox): void {
-    let invitationPopover = this.popoverCtrl.create(
+    const invitationPopover = this.popoverCtrl.create(
       InvitationPopoverComponent,
       {
         data: this.invitationForm.value,
@@ -183,7 +184,7 @@ export class BookTablePage implements OnInit {
   }
 
   validateEmail(): void {
-    let email = last(this.invitationModel);
+    const email = last(this.invitationModel);
     if (!emailValidator(email)) {
       this.invitationModel.pop();
       this.translate
@@ -192,7 +193,7 @@ export class BookTablePage implements OnInit {
           this.toastprovider.openToast(text, 1000, 'red');
         });
     } else {
-      let componentRef = this.emailChipContainer.createComponent(
+      const componentRef = this.emailChipContainer.createComponent(
         this.emailChipfactory,
       );
       componentRef.instance.setLabel(email);
@@ -200,7 +201,9 @@ export class BookTablePage implements OnInit {
       componentRef.onDestroy(() =>
         this.invitationModel.forEach(
           (value: string, index: number, array: string[]) => {
-            if (value === componentRef.instance.labelText) array.splice(index);
+            if (value === componentRef.instance.labelText) {
+              array.splice(index);
+            }
           },
         ),
       );
@@ -234,7 +237,7 @@ export class BookTablePage implements OnInit {
   }
 
   changeDate(form: string, value: string): void {
-    let newDate = moment(value);
+    const newDate = moment(value);
     if (form === 'inv') {
       newDate.locale(this.invitationForm.get('bookingDate').value.locale());
       this.invitationForm.get('bookingDate').setValue(newDate);

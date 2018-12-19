@@ -24,6 +24,8 @@ export class EmailChipComponent {
   }
 
   selfDestruct() {
-    if (!!this.componentRef) this.componentRef.destroy();
+    if (!!this.componentRef) {
+      this.componentRef.destroy();
+    }
   }
 }

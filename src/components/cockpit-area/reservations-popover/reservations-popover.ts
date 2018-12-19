@@ -16,9 +16,9 @@ import { NavParams, ViewController } from 'ionic-angular';
 })
 export class ReservationsPopoverComponent implements OnInit {
   datao: FriendsInvite[] = [];
-  fromRow: number = 1;
-  currentPage: number = 1;
-  pageSize: number = 4;
+  fromRow = 1;
+  currentPage = 1;
+  pageSize = 4;
 
   data: any;
   columnso: ITdDataTableColumn[] = [

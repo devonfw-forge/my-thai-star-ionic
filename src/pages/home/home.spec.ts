@@ -9,6 +9,7 @@ import { IonicModule, NavController } from 'ionic-angular';
 
 describe('HomePage', () => {
   let component: HomePage;
+  // tslint:disable-next-line:prefer-const
   let navCtrl: NavController;
 
   beforeEach(async(() => {

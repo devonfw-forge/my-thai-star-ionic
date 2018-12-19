@@ -19,8 +19,10 @@ import { AuthProvider } from 'providers/auth/auth';
 
 describe('MenuPage', () => {
   let component: MenuPage;
+  // tslint:disable-next-line:prefer-const
   let http: HttpClient;
   let menuService: MenuProvider;
+  // tslint:disable-next-line:prefer-const
   let navCtrl: NavController;
 
   beforeEach(async(() => {

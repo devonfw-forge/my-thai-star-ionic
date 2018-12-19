@@ -5,9 +5,9 @@ import { Role } from '../../viewModels/interfaces';
 
 @Injectable()
 export class AuthProvider {
-  private logged: boolean = false;
-  private user: string = '';
-  private currentRole: string = 'CUSTOMER';
+  private logged = false;
+  private user = '';
+  private currentRole = 'CUSTOMER';
   private token: string;
 
   public isLogged(): boolean {
@@ -39,7 +39,7 @@ export class AuthProvider {
   }
 
   public getPermission(roleName: string): number {
-    let role: Role = <Role>find(config.roles, { name: roleName });
+    const role: Role = <Role>find(config.roles, { name: roleName });
     return role.permission;
   }
 

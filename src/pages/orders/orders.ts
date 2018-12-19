@@ -20,6 +20,7 @@ import { AuthGuardProvider } from '../../providers/auth-guard/auth-guard';
   selector: 'page-orders',
   templateUrl: 'orders.html',
 })
+// tslint:disable-next-line:component-class-suffix
 export class OrdersPage implements OnInit {
   private pageable: Pageable = {
     pageSize: 8,
@@ -28,7 +29,7 @@ export class OrdersPage implements OnInit {
   };
   private sorting: any[] = [];
 
-  pageSize: number = 8;
+  pageSize = 8;
 
   orders: OrderListView[];
   totalOrders: number;

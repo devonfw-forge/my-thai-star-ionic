@@ -21,7 +21,7 @@ export class UserAreaProvider {
     public events: Events,
     public translate: TranslateService,
     private http: HttpClient,
-    public AuthProvider: AuthProvider,
+    public auth: AuthProvider,
   ) {
     this.translate.get('alerts.authAlerts').subscribe((result: any) => {
       this.authAlerts = result;
@@ -37,13 +37,13 @@ export class UserAreaProvider {
       )
       .subscribe(
         (res: any) => {
-          this.AuthProvider.setToken(res.headers.get('Authorization'));
+          this.auth.setToken(res.headers.get('Authorization'));
           this.http
             .get(`${environment.restServiceRoot}${this.currentUserRestPath}`)
             .subscribe((loginInfo: any) => {
-              this.AuthProvider.setLogged(true);
-              this.AuthProvider.setUser(loginInfo.name);
-              this.AuthProvider.setRole(loginInfo.role);
+              this.auth.setLogged(true);
+              this.auth.setUser(loginInfo.name);
+              this.auth.setRole(loginInfo.role);
               this.events.publish('navTo', OrdersPage);
               this.toastprovider.openToast(
                 this.authAlerts.loginSuccess,
@@ -53,7 +53,7 @@ export class UserAreaProvider {
             });
         },
         (err: any) => {
-          this.AuthProvider.setLogged(false);
+          this.auth.setLogged(false);
           this.toastprovider.openToast(err.message, 4000, 'red');
         },
       );
@@ -85,16 +85,16 @@ export class UserAreaProvider {
   }
 
   logout(): void {
-    this.AuthProvider.setLogged(false);
-    this.AuthProvider.setUser('');
-    this.AuthProvider.setRole('CUSTOMER');
-    this.AuthProvider.setToken('');
+    this.auth.setLogged(false);
+    this.auth.setUser('');
+    this.auth.setRole('CUSTOMER');
+    this.auth.setToken('');
     this.events.publish('navTo', HomePage);
     this.toastprovider.openToast(this.authAlerts.logoutSuccess, 4000, 'black');
   }
 
   changePassword(data: any): void {
-    data.username = this.AuthProvider.getUser();
+    data.username = this.auth.getUser();
     this.http
       .post(`${environment.restServiceRoot}${this.changePasswordRestPath}`, {
         username: data.username,

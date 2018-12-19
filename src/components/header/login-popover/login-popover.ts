@@ -16,7 +16,7 @@ import {
   animations: [
     trigger('itemState', [
       state('in', style({ transform: 'translateY(0)' })),
-      //Enter
+      // Enter
       transition('void => *', [
         style({
           transform: 'translateY(-100%)',

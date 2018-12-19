@@ -19,7 +19,7 @@ export class BookTableProvider {
   }
 
   composeBooking(invitationData: any, type: number): BookingInfo {
-    let composedBooking: BookingInfo = {
+    const composedBooking: BookingInfo = {
       booking: {
         bookingDate: invitationData.bookingDate,
         name: invitationData.name,

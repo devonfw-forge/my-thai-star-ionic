@@ -20,6 +20,7 @@ export interface Filters {
   selector: 'page-menu',
   templateUrl: 'menu.html',
 })
+// tslint:disable-next-line:component-class-suffix
 export class MenuPage {
   dishes$: Observable<DishView[]>;
 

@@ -11,7 +11,7 @@ import { OrderModalComponent } from '../../order-modal/order-modal';
   templateUrl: 'menu-card.html',
 })
 export class MenuCardComponent {
-  @Input('menu') menuInfo: DishView;
+  @Input() menuInfo: DishView;
 
   constructor(
     private menuProvider: MenuProvider,

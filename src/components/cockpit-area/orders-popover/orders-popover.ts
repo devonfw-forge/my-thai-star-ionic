@@ -15,10 +15,10 @@ import { WaiterCockpitProvider } from '../../../providers/waiter-cockpit/waiter-
   templateUrl: 'orders-popover.html',
 })
 export class OrdersPopoverComponent implements OnInit {
-  private fromRow: number = 1;
-  private currentPage: number = 1;
+  private fromRow = 1;
+  private currentPage = 1;
 
-  pageSize: number = 4;
+  pageSize = 4;
 
   data: any;
   datat: BookingView[] = [];

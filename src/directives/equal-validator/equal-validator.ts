@@ -13,15 +13,15 @@ import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
   ],
 })
 export class EqualValidatorDirective implements Validator {
-  @Input('validateEqual')
+  @Input()
   public validateEqual: string;
   // reverse property is to check if both fields are equal not matter which one is modified first
-  @Input('reverse')
+  @Input()
   public reverse: string;
 
   validate(control: AbstractControl): { [key: string]: any } {
     // control value
-    let controlValue: AbstractControl = control.root.get(this.validateEqual);
+    const controlValue: AbstractControl = control.root.get(this.validateEqual);
 
     if (!controlValue) {
       return undefined;

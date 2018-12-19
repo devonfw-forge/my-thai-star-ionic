@@ -19,6 +19,7 @@ import { AuthProvider } from '../providers/auth/auth';
   selector: 'public-main',
   templateUrl: 'app.html',
 })
+// tslint:disable-next-line:component-class-suffix
 export class MyApp {
   @ViewChild(Nav)
   nav: Nav;
