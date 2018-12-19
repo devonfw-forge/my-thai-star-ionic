@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, TestBed } from '@angular/core/testing';
 
 import { CoreModule } from '../../core/core.module';
 import { TranslateModule } from '@ngx-translate/core';

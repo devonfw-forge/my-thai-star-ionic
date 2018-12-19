@@ -8,7 +8,6 @@ import { ToastProvider } from '../../../providers/toast/toast';
 import { TranslateModule } from '@ngx-translate/core';
 import { PopoverController, IonicModule } from 'ionic-angular';
 import { AppModule } from 'app/app.module';
-import { MyApp } from 'app/app.component';
 import { ComponentsModule } from 'components/components.module';
 import { InvitationPopoverComponent } from './invitation-popover';
 

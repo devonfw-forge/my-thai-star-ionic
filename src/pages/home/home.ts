@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Tile } from '../../components/home/home-card/home-card';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { BookTablePage } from '../book-table/book-table';
 import { MenuPage } from '../menu/menu';
 @IonicPage()

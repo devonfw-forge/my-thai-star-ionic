@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { DishView } from '../../viewModels/interfaces';
 import { Observable } from 'rxjs';
 import { MenuProvider } from '../../providers/menu/menu';
