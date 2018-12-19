@@ -1,10 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  IonicPage,
-  NavController,
-  NavParams,
-  PopoverController,
-} from 'ionic-angular';
+import { IonicPage, NavController, PopoverController } from 'ionic-angular';
 import { WaiterCockpitProvider } from '../../providers/waiter-cockpit/waiter-cockpit';
 import { Pageable, FilterCockpit, Sort } from '../../backendModels/interfaces';
 import { ReservationView } from '../../viewModels/interfaces';
@@ -48,7 +43,6 @@ export class ReservationsPage {
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams,
     private waiterCockpitProvider: WaiterCockpitProvider,
     private translate: TranslateService,
     private popoverCtrl: PopoverController,

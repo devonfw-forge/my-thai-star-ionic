@@ -6,7 +6,6 @@ import {
   ViewContainerRef,
   ComponentFactoryResolver,
   ComponentFactory,
-  ChangeDetectorRef,
 } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BookTablePopoverComponent } from '../../components/book-table/book-table-popover/book-table-popover';
@@ -77,7 +76,6 @@ export class BookTablePage implements OnInit {
     public toastprovider: ToastProvider,
     public popoverCtrl: PopoverController,
     private componentFactoryResolver: ComponentFactoryResolver,
-    public cd: ChangeDetectorRef,
   ) {
     this.tab = 'book';
     this.emailChipfactory = this.componentFactoryResolver.resolveComponentFactory(

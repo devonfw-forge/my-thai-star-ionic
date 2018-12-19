@@ -37,12 +37,10 @@ export class UserAreaProvider {
       )
       .subscribe(
         (res: any) => {
-          console.log(res);
           this.AuthProvider.setToken(res.headers.get('Authorization'));
           this.http
             .get(`${environment.restServiceRoot}${this.currentUserRestPath}`)
             .subscribe((loginInfo: any) => {
-              console.log(loginInfo);
               this.AuthProvider.setLogged(true);
               this.AuthProvider.setUser(loginInfo.name);
               this.AuthProvider.setRole(loginInfo.role);

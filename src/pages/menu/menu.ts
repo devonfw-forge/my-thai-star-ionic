@@ -25,7 +25,6 @@ export class MenuPage {
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams,
     public menuProvider: MenuProvider,
   ) {}
 

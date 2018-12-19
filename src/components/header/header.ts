@@ -3,7 +3,6 @@ import { WindowProvider } from '../../providers/window/window';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthProvider } from '../../providers/auth/auth';
 import { UserAreaProvider } from '../../providers/user-area/user-area';
-import { DateTimeAdapter } from 'ng-pick-datetime';
 import { OrderProvider } from '../../providers/order/order';
 import { config } from '../../config';
 import {
@@ -31,7 +30,6 @@ export class HeaderComponent {
     public order: OrderProvider,
     public auth: AuthProvider,
     public userProvider: UserAreaProvider,
-    public dateTimeAdapter: DateTimeAdapter<any>,
     public events: Events,
     public popoverCtrl: PopoverController,
     public modalCtrl: ModalController,
@@ -39,7 +37,6 @@ export class HeaderComponent {
   ) {
     this.selectableLangs = config.langs;
     this.getFlag(this.translate.currentLang);
-    this.dateTimeAdapter.setLocale(this.translate.currentLang);
     events.subscribe('languageChanged', (lang) => this.getFlag(lang));
   }
 

@@ -14,7 +14,6 @@ import {
 import { config } from '../../config';
 import { OrderListView } from '../../viewModels/interfaces';
 import { AuthGuardProvider } from '../../providers/auth-guard/auth-guard';
-import { AuthProvider } from '../../providers/auth/auth';
 
 @IonicPage()
 @Component({
@@ -50,7 +49,6 @@ export class OrdersPage implements OnInit {
     private waiterCockpitProvider: WaiterCockpitProvider,
     private authGuard: AuthGuardProvider,
     public navCtrl: NavController,
-    public auth: AuthProvider,
   ) {}
 
   ngOnInit(): void {

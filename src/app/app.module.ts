@@ -18,7 +18,6 @@ import { ToastProvider } from '../providers/toast/toast';
 import { HttpRequestInterceptorProvider } from '../providers/http-request-interceptor/http-request-interceptor';
 import { WindowProvider } from '../providers/window/window';
 import { BookTableProvider } from '../providers/book-table/book-table';
-import { EmailConfirmationsProvider } from '../providers/email-confirmations/email-confirmations';
 import { WaiterCockpitProvider } from '../providers/waiter-cockpit/waiter-cockpit';
 import { MenuProvider } from '../providers/menu/menu';
 import { PriceCalculatorProvider } from '../providers/price-calculator/price-calculator';
@@ -70,9 +69,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     HttpRequestInterceptorProvider,
     WindowProvider,
     BookTableProvider,
-    EmailConfirmationsProvider,
     WaiterCockpitProvider,
-    EmailConfirmationsProvider,
     MenuProvider,
     PriceCalculatorProvider,
     UserAreaProvider,
